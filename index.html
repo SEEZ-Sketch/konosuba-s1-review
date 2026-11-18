@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为美好的世界献上祝福 · 第一季赏析</title>
+<meta name="description" content="关于《为美好的世界献上祝福！》第一季的个人赏析：角色、剧情结构与一点偏见。非官方粉丝作品。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23f7f1e4'/%3E%3Cpath d='M16 5c0 0 8 9.6 8 13.6A8 8 0 0 1 8 18.6C8 14.6 16 5 16 5z' fill='%232b96a8'/%3E%3C/svg%3E">
+<style>
+/* ============ 基础变量 ============ */
+:root{
+  --paper:#f7f1e4;
+  --paper-2:#fffdf7;
+  --paper-3:#efe5d2;
+  --ink:#221f1a;
+  --ink-2:#4d463b;
+  --ink-3:#8b8272;
+  --line:#ded2bb;
+  --line-2:#eae0cd;
+  --aqua:#2b96a8;
+  --aqua-2:#1d7585;
+  --crimson:#c23c32;
+  --gold:#b0812c;
+  --green:#3d8560;
+  --violet:#7a61a6;
+  --shadow:0 24px 60px -40px rgba(60,45,25,.55);
+  --ff-serif:"Palatino Linotype","Iowan Old Style","Songti SC","STSong",Georgia,"SimSun",serif;
+  --ff-sans:"Segoe UI","PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,sans-serif;
+  --ff-mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+}
+[data-theme="night"]{
+  --paper:#171512;
+  --paper-2:#201d19;
+  --paper-3:#282420;
+  --ink:#f2ebdd;
+  --ink-2:#c7bfae;
+  --ink-3:#948b7b;
+  --line:#3a342b;
+  --line-2:#302b23;
+  --shadow:0 24px 60px -40px rgba(0,0,0,.9);
+  --aqua:#5fbfd0;
+  --aqua-2:#7fd2e0;
+  --crimson:#e8645a;
+  --gold:#d3a758;
+  --green:#5fae83;
+  --violet:#a58bd0;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:86px;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--ff-sans);font-size:16px;line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(circle at 12% 4%,color-mix(in srgb,var(--paper-2) 90%,transparent),transparent 42%),
+    radial-gradient(circle at 88% 72%,color-mix(in srgb,var(--paper-3) 70%,transparent),transparent 46%);
+  background-attachment:fixed;
+  transition:background-color .5s ease,color .5s ease;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.62'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+[data-theme="night"] body::after{mix-blend-mode:screen;opacity:.05}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+h1,h2,h3,h4,p,ul,dl,figure,blockquote{margin:0}
+ul{list-style:none;padding:0}
+::selection{background:color-mix(in srgb,var(--aqua) 30%,transparent)}
+.wrap{width:min(1140px,92vw);margin-inline:auto}
+.serif{font-family:var(--ff-serif)}
+.mono{font-family:var(--ff-mono)}
+
+/* ============ 顶栏 ============ */
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;background:transparent}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--aqua),var(--gold),var(--crimson));transition:width .12s linear}
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  display:flex;align-items:center;gap:28px;
+  padding:0 max(4vw,24px);height:72px;
+  border-bottom:1px solid transparent;transition:background .35s ease,border-color .35s ease,backdrop-filter .35s ease;
+}
+.nav.scrolled{
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(14px) saturate(1.1);
+  border-bottom-color:var(--line);
+}
+.brand{display:flex;align-items:baseline;gap:10px;flex-shrink:0}
+.brand b{font-family:var(--ff-serif);font-size:23px;font-weight:600;letter-spacing:.12em}
+.brand b em{color:var(--crimson);font-style:normal}
+.brand span{font:500 9px/1 var(--ff-mono);letter-spacing:.24em;color:var(--ink-3);text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav-links a{
+  position:relative;padding:8px 13px;border-radius:999px;
+  font-size:13.5px;letter-spacing:.06em;color:var(--ink-2);
+  transition:color .25s ease,background .25s ease;
+}
+.nav-links a:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 5%,transparent)}
+.nav-links a.active{color:var(--ink)}
+.nav-links a.active::after{
+  content:"";position:absolute;left:13px;right:13px;bottom:2px;height:1px;background:var(--crimson);
+}
+.nav-tools{display:flex;align-items:center;gap:6px;margin-left:8px}
+.icon-btn{
+  width:34px;height:34px;display:grid;place-items:center;border-radius:50%;
+  border:1px solid var(--line);color:var(--ink-2);font-size:14px;line-height:1;
+  transition:all .25s ease;
+}
+.icon-btn:hover{border-color:var(--ink);color:var(--ink);transform:rotate(-8deg)}
+.burger{display:none;width:38px;height:34px;padding:9px 7px;flex-direction:column;justify-content:space-between;border:1px solid var(--line);border-radius:6px}
+.burger i{display:block;height:1.5px;background:var(--ink);transition:transform .3s ease,opacity .3s ease}
+.burger.on i:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger.on i:nth-child(2){opacity:0}
+.burger.on i:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{
+  position:fixed;inset:72px 0 auto;z-index:89;display:none;
+  background:color-mix(in srgb,var(--paper) 97%,transparent);
+  border-bottom:1px solid var(--line);padding:14px 6vw 26px;
+  backdrop-filter:blur(12px);
+}
+.mobile-menu.on{display:block;animation:drop .3s ease}
+@keyframes drop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.mobile-menu a{display:block;padding:13px 0;border-bottom:1px solid var(--line-2);font-size:15px;letter-spacing:.08em}
+.mobile-menu a:last-child{border-bottom:0}
+
+/* ============ Hero ============ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding:112px 0 92px}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 58%;transform:scale(1.02)}
+.hero-veil{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,color-mix(in srgb,var(--paper) 97%,transparent) 0%,color-mix(in srgb,var(--paper) 90%,transparent) 34%,color-mix(in srgb,var(--paper) 42%,transparent) 62%,color-mix(in srgb,var(--paper) 8%,transparent) 100%),
+    linear-gradient(0deg,var(--paper) 0%,color-mix(in srgb,var(--paper) 25%,transparent) 22%,transparent 52%);
+}
+.hero-particles{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.hero-rune{
+  position:absolute;right:-8vw;bottom:-14vh;width:min(640px,56vw);aspect-ratio:1;
+  color:var(--gold);opacity:.3;z-index:1;pointer-events:none;
+  animation:spin 120s linear infinite;
+}
+.hero-rune svg{width:100%;height:100%}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-inner{position:relative;z-index:3;max-width:680px}
+.eyebrow{
+  display:flex;align-items:center;gap:10px;
+  font:500 10.5px/1 var(--ff-mono);letter-spacing:.28em;text-transform:uppercase;color:var(--ink-2);
+  margin-bottom:26px;
+}
+.eyebrow .pulse{width:6px;height:6px;border-radius:50%;background:var(--crimson);position:relative}
+.eyebrow .pulse::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--crimson);opacity:.5;animation:pulse 2.6s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:.7}70%,100%{transform:scale(1.35);opacity:0}}
+.hero-title{
+  font-family:var(--ff-serif);font-weight:600;
+  font-size:clamp(46px,7vw,88px);line-height:1.1;letter-spacing:.03em;
+  display:flex;flex-direction:column;
+}
+.hero-title .accent{display:inline-block;position:relative;padding-bottom:6px}
+.hero-title .accent em{
+  font-style:normal;color:var(--crimson);position:relative;padding:0 .06em;
+}
+.hero-title .accent em::after{
+  content:"";position:absolute;left:.02em;right:.02em;bottom:.08em;height:.12em;
+  background:var(--crimson);opacity:.22;border-radius:2px;transform:rotate(-.7deg);
+}
+.hero-jp{margin-top:18px;font-family:var(--ff-mono);font-size:12px;letter-spacing:.32em;color:var(--ink-3)}
+.nowrap{white-space:nowrap}
+.hero-lede{margin-top:30px;font-size:17px;line-height:2;color:var(--ink-2);max-width:34em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6em;
+  padding:12px 24px;border-radius:999px;font-size:13.5px;letter-spacing:.1em;
+  transition:transform .25s ease,background .25s ease,color .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+.btn-solid{background:var(--ink);color:var(--paper);box-shadow:0 14px 30px -20px var(--ink)}
+.btn-solid:hover{background:var(--crimson);transform:translateY(-2px)}
+.btn-solid span{font-size:12px;transition:transform .25s ease}
+.btn-solid:hover span{transform:translateY(3px)}
+.btn-line{border:1px solid color-mix(in srgb,var(--ink) 30%,transparent);color:var(--ink);background:color-mix(in srgb,var(--paper-2) 55%,transparent)}
+.btn-line:hover{border-color:var(--crimson);color:var(--crimson);transform:translateY(-2px)}
+.hero-meta{display:flex;flex-wrap:wrap;align-items:center;gap:0 22px;margin-top:44px;font-size:12px;letter-spacing:.12em;color:var(--ink-3)}
+.hero-meta li+li{border-left:1px solid var(--line);padding-left:22px}
+.hero-meta b{font-family:var(--ff-serif);font-size:19px;color:var(--ink);margin-right:4px;font-weight:600}
+.hero-side{
+  position:absolute;right:26px;top:50%;transform:translateY(-50%);z-index:3;
+  writing-mode:vertical-rl;font-family:var(--ff-serif);font-size:12px;letter-spacing:.42em;
+  color:color-mix(in srgb,var(--ink) 45%,transparent);pointer-events:none;
+}
+/* 主视觉相片卡 */
+.hero-photo{
+  position:absolute;right:5.5vw;top:50%;z-index:3;width:clamp(280px,25vw,352px);
+  margin:0;padding:9px 9px 0;background:#fffdf7;
+  box-shadow:0 30px 60px -30px rgba(50,38,20,.55),0 2px 0 rgba(255,255,255,.6) inset;
+  transform:translateY(-50%) rotate(1.6deg);
+  transition:transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .6s ease;
+}
+.hero-photo:hover{transform:translateY(-50%) rotate(0deg) scale(1.015);box-shadow:0 40px 80px -34px rgba(50,38,20,.6)}
+.hero-photo img{width:100%;height:auto;display:block}
+.hero-photo figcaption{
+  display:flex;justify-content:space-between;align-items:baseline;gap:8px;
+  padding:9px 2px 10px;font-size:10.5px;letter-spacing:.12em;color:#7d7364;
+}
+.hero-photo figcaption em{font-style:normal;font-size:8px;letter-spacing:.04em;color:#a9a091;text-align:right}
+[data-theme="night"] .hero-photo{background:#242019;box-shadow:0 30px 60px -30px rgba(0,0,0,.9)}
+[data-theme="night"] .hero-photo figcaption{color:#a49a8a}
+@media (max-width:1120px){.hero-photo{display:none}}
+.hero-credit{
+  position:absolute;right:max(4vw,24px);bottom:26px;z-index:3;
+  font:400 11px/1 var(--ff-sans);letter-spacing:.18em;
+  color:var(--ink-2);opacity:.88;pointer-events:none;user-select:none;
+}
+.scroll-cue{
+  position:absolute;left:max(4vw,24px);bottom:26px;z-index:3;
+  display:flex;align-items:center;gap:10px;
+  font:500 9.5px/1 var(--ff-mono);letter-spacing:.3em;color:var(--ink-3);
+}
+.scroll-cue i{display:block;width:46px;height:1px;background:var(--line);position:relative;overflow:hidden}
+.scroll-cue i::after{content:"";position:absolute;inset:0;background:var(--crimson);transform-origin:left;animation:slide 2.8s ease-in-out infinite}
+@keyframes slide{0%{transform:scaleX(0)}50%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
+
+/* ============ 通用区块 ============ */
+.sec{padding:108px 0}
+.sec.alt{background:color-mix(in srgb,var(--paper-2) 72%,transparent);border-block:1px solid var(--line-2)}
+.sec-head{
+  display:grid;grid-template-columns:auto 1fr auto auto;align-items:baseline;gap:0 16px;
+  border-top:1px solid var(--line);padding-top:20px;margin-bottom:54px;
+}
+.sec-no{grid-area:1/1}
+.sec-head h2{grid-area:1/2}
+.sec-en{grid-area:1/3;justify-self:end}
+.sec-sub{grid-area:2/1/3/5}
+.sec-sticker{grid-area:1/4;justify-self:end;align-self:center;height:58px;width:auto;transform:rotate(-6deg)}
+.sec-sticker.round{height:46px;width:46px;border-radius:50%;object-fit:cover;border:2px solid var(--paper-2);box-shadow:0 8px 18px -12px rgba(60,45,25,.7)}
+.sec-no{font:600 11px/1 var(--ff-mono);letter-spacing:.22em;color:var(--gold)}
+.sec-head h2{font-family:var(--ff-serif);font-size:clamp(25px,3.2vw,40px);font-weight:600;letter-spacing:.05em;line-height:1.32;text-wrap:balance}
+.sec-head h2::before{content:"◆";font-size:8px;color:var(--crimson);vertical-align:middle;margin-right:12px;opacity:.85}
+.sec-en{font:500 10px/1 var(--ff-mono);letter-spacing:.28em;text-transform:uppercase;color:var(--ink-3)}
+.sec-sub{margin-top:14px;font-size:14.5px;color:var(--ink-2);max-width:62ch}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0ms)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ 序 ============ */
+.pro-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:clamp(32px,5vw,72px);align-items:start}
+.pro-text p{font-size:16.5px;line-height:2.05;color:var(--ink-2);margin-bottom:20px}
+.pro-text p:first-child{color:var(--ink)}
+.pro-text p.drop::first-letter{
+  float:left;font-family:var(--ff-serif);font-size:64px;line-height:.86;
+  padding:.06em .12em 0 0;color:var(--crimson);font-weight:600;
+}
+.pull{
+  margin:34px 0 0;padding:22px 0 22px 26px;border-left:2px solid var(--crimson);
+  font-family:var(--ff-serif);font-size:21px;line-height:1.9;color:var(--ink);
+}
+.pull small{display:block;margin-top:10px;font-family:var(--ff-sans);font-size:11.5px;letter-spacing:.18em;color:var(--ink-3)}
+.pro-card{
+  position:relative;background:var(--paper-2);border:1px solid var(--line);
+  padding:30px 28px 26px;box-shadow:var(--shadow);
+}
+.pro-card::before{
+  content:"";position:absolute;inset:7px;border:1px solid var(--line-2);pointer-events:none;
+}
+.pro-card h3{
+  font-family:var(--ff-serif);font-size:15px;letter-spacing:.22em;font-weight:600;
+  padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:6px;
+}
+.pro-card dl{position:relative}
+.pro-card dl div{display:grid;grid-template-columns:5.4em 1fr;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line-2);font-size:13.5px}
+.pro-card dt{color:var(--ink-3);letter-spacing:.1em}
+.pro-card dd{margin:0;color:var(--ink)}
+.pro-note{margin-top:20px;font-size:12.5px;line-height:1.9;color:var(--ink-3)}
+.pro-note b{color:var(--crimson);font-weight:600}
+.stamp-note{
+  position:absolute;right:-14px;top:-16px;transform:rotate(7deg);
+  border:1px solid var(--crimson);color:var(--crimson);
+  font:600 10px/1 var(--ff-mono);letter-spacing:.16em;padding:7px 10px;
+  background:color-mix(in srgb,var(--paper) 80%,transparent);opacity:.9;
+}
+
+/* ============ 世界 ============ */
+.world-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:26px;align-items:stretch}
+.world-note{background:var(--paper-2);border:1px solid var(--line);padding:30px 28px}
+.world-note h3{font-family:var(--ff-serif);font-size:22px;font-weight:600;letter-spacing:.06em;margin-bottom:14px}
+.world-note h3 span{display:block;font:500 9px/1 var(--ff-mono);letter-spacing:.26em;color:var(--ink-3);margin-top:8px;text-transform:uppercase}
+.world-note p{font-size:14px;line-height:1.95;color:var(--ink-2)}
+.world-list{margin-top:20px;border-top:1px solid var(--line-2)}
+.world-list li{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--line-2);font-size:13px;color:var(--ink-2)}
+.world-list b{color:var(--crimson);font-family:var(--ff-serif);font-weight:600;flex-shrink:0}
+.world-close{margin-top:20px;padding-top:14px;border-top:1px dashed var(--line-2);font-size:12.5px;line-height:1.9;color:var(--ink-3)}
+.world-fig{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--paper-3)}
+.world-fig img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.world-fig:hover img{transform:scale(1.045)}
+.world-fig figcaption{
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  padding:12px 14px;font-size:12px;letter-spacing:.1em;color:var(--ink-2);
+  background:var(--paper-2);border-top:1px solid var(--line);
+}
+.world-fig figcaption em{font-style:normal;font-size:9.5px;color:var(--ink-3);letter-spacing:.16em}
+.fig-note{margin-top:16px;font-size:11.5px;color:var(--ink-3);letter-spacing:.04em}
+/* 爆裂视觉间奏 */
+.band{position:relative;height:clamp(230px,34vh,360px);overflow:hidden;background:#1b1410;display:grid;place-items:center;isolation:isolate}
+.band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 56%;opacity:.9;z-index:-2}
+.band::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(27,20,16,.5),rgba(27,20,16,.12) 35%,rgba(27,20,16,.72))}
+.band-cap{text-align:center;color:#f7eddd;padding:0 8vw}
+.band-cap p{font-family:var(--ff-serif);font-size:clamp(22px,3.1vw,34px);letter-spacing:.24em;text-shadow:0 4px 40px rgba(0,0,0,.55)}
+.band-cap small{display:block;margin-top:12px;font:500 10px/1 var(--ff-mono);letter-spacing:.26em;opacity:.6;text-transform:uppercase}
+
+/* ============ 角色 ============ */
+.cast-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.char{
+  position:relative;overflow:hidden;text-align:left;min-height:404px;
+  background:linear-gradient(160deg,var(--paper-2),color-mix(in srgb,var(--paper-3) 45%,var(--paper-2)));
+  border:1px solid var(--line);padding:26px 28px 20px;
+  transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s ease,border-color .45s ease;
+  cursor:pointer;isolation:isolate;
+}
+.char::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:linear-gradient(90deg,var(--c),transparent 72%);z-index:2}
+.char::after{
+  content:"";position:absolute;inset:auto -40% -60% auto;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--c) 16%,transparent),transparent 68%);
+  opacity:.7;z-index:0;transition:opacity .45s ease,transform .6s ease;
+}
+.char:hover,.char:focus-visible{transform:translateY(-6px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--c) 42%,var(--line))}
+.char:hover::after,.char:focus-visible::after{opacity:1;transform:scale(1.15)}
+.char:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+.char-head{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;max-width:58%}
+.char-no{font:600 10px/1 var(--ff-mono);letter-spacing:.2em;color:var(--c)}
+.char-cls{font-size:11px;letter-spacing:.12em;color:var(--ink-3);text-align:right}
+.char-fig{
+  position:absolute;right:-10px;top:18px;bottom:0;width:47%;z-index:0;pointer-events:none;
+  display:flex;align-items:flex-end;justify-content:flex-end;
+}
+.char-fig img{
+  height:100%;width:auto;max-width:none;
+  transition:transform .55s cubic-bezier(.2,.7,.2,1);
+}
+.char:hover .char-fig img,.char:focus-visible .char-fig img{transform:translateY(-5px) scale(1.02)}
+.char-fallback{display:none;width:46%;max-width:130px;color:var(--c);opacity:.4;margin:0 6% 12% 0}
+.char-fallback svg{width:100%;height:auto;display:block}
+.char-fig.broken img{display:none}
+.char-fig.broken .char-fallback{display:block}
+.char-name{
+  position:relative;z-index:1;margin-top:34px;max-width:58%;
+  font-family:var(--ff-serif);font-size:30px;font-weight:600;letter-spacing:.06em;line-height:1.25;
+}
+.char-name span{display:block;font-family:var(--ff-sans);font-size:10.5px;letter-spacing:.2em;color:var(--ink-3);margin-top:8px;font-weight:400}
+.char-tag{
+  position:relative;z-index:1;margin-top:14px;max-width:58%;font-size:13.5px;color:var(--c);
+  padding-left:16px;border-left:1px solid color-mix(in srgb,var(--c) 45%,transparent);
+}
+.bars{position:relative;z-index:1;margin-top:20px;max-width:56%;display:flex;flex-direction:column;gap:8px}
+.bars li{display:grid;grid-template-columns:3.6em 1fr 2.2em;align-items:center;gap:12px;font-size:11px;letter-spacing:.08em;color:var(--ink-3)}
+.bars i{height:3px;background:color-mix(in srgb,var(--ink) 10%,transparent);border-radius:99px;overflow:hidden}
+.bars b{display:block;height:100%;width:0;background:var(--c);border-radius:99px;transition:width 1.15s cubic-bezier(.2,.8,.2,1) .25s}
+.reveal.in .bars b{width:var(--v)}
+.bars em{font-style:normal;text-align:right;font-family:var(--ff-mono);font-size:10px;color:var(--ink-2)}
+.char-foot{
+  position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;
+  max-width:56%;margin-top:24px;padding-top:14px;border-top:1px solid var(--line-2);
+  font:500 9.5px/1 var(--ff-mono);letter-spacing:.24em;color:var(--ink-3);text-transform:uppercase;
+}
+.char-foot .arrow{font-size:14px;color:var(--c);transition:transform .3s ease}
+.char:hover .char-foot .arrow{transform:translate(3px,-3px)}
+.stamp{
+  position:absolute;right:20px;bottom:58px;z-index:1;transform:rotate(-11deg);
+  border:1.5px solid color-mix(in srgb,var(--c) 55%,transparent);color:color-mix(in srgb,var(--c) 80%,transparent);
+  font:600 9.5px/1 var(--ff-mono);letter-spacing:.14em;padding:5px 8px;opacity:.5;
+}
+.support{margin-top:34px;border-top:1px solid var(--line);padding-top:22px}
+.support-head{font:500 9.5px/1 var(--ff-mono);letter-spacing:.26em;color:var(--ink-3);text-transform:uppercase;margin-bottom:16px}
+.support-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.sup{display:flex;gap:12px;align-items:flex-start;padding:16px;border:1px solid var(--line-2);background:color-mix(in srgb,var(--paper-2) 70%,transparent);transition:border-color .3s ease,background .3s ease}
+.sup:hover{border-color:var(--line);background:var(--paper-2)}
+.sup>img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid var(--line);background:var(--paper-3);filter:saturate(.95)}
+.sup>div{min-width:0;flex:1}
+.sup b{display:block;font-family:var(--ff-serif);font-size:16px;font-weight:600;letter-spacing:.06em}
+.sup span{display:block;margin-top:4px;font-size:10px;letter-spacing:.16em;color:var(--crimson)}
+.sup p{margin-top:8px;font-size:12px;line-height:1.75;color:var(--ink-2)}
+
+/* ============ 第一季 ============ */
+.season-top{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-bottom:34px}
+.ribbon{display:flex;align-items:center;gap:3px}
+.ribbon i{display:block;width:22px;height:4px;background:color-mix(in srgb,var(--ink) 12%,transparent)}
+.ribbon i.on{background:var(--crimson)}
+.season-top p{font-size:12.5px;letter-spacing:.1em;color:var(--ink-3)}
+.arc{border-top:1px solid var(--line)}
+.arc:last-child{border-bottom:1px solid var(--line)}
+.arc-head{
+  width:100%;display:grid;grid-template-columns:110px 1fr 34px;align-items:center;gap:18px;
+  padding:24px 4px;text-align:left;transition:background .3s ease;
+}
+.arc-head:hover{background:color-mix(in srgb,var(--ink) 3%,transparent)}
+.arc-range{font:600 10.5px/1.6 var(--ff-mono);letter-spacing:.12em;color:var(--gold)}
+.arc-main b{display:block;font-family:var(--ff-serif);font-size:20px;font-weight:600;letter-spacing:.04em;line-height:1.4}
+.arc-main em{display:block;font-style:normal;font-size:11px;letter-spacing:.18em;color:var(--ink-3);margin-top:4px}
+.arc-icon{position:relative;width:30px;height:30px;border:1px solid var(--line);border-radius:50%;justify-self:end;transition:border-color .3s ease,background .3s ease}
+.arc-icon::before,.arc-icon::after{content:"";position:absolute;left:50%;top:50%;background:var(--ink-2);transform:translate(-50%,-50%);transition:transform .35s ease,opacity .3s ease}
+.arc-icon::before{width:11px;height:1px}
+.arc-icon::after{width:1px;height:11px}
+.arc.open .arc-icon{background:var(--ink);border-color:var(--ink)}
+.arc.open .arc-icon::before,.arc.open .arc-icon::after{background:var(--paper)}
+.arc.open .arc-icon::after{opacity:0}
+.arc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1)}
+.arc.open .arc-body{grid-template-rows:1fr}
+.arc-inner{overflow:hidden}
+.arc-content{padding:2px 4px 32px;display:grid;grid-template-columns:1.18fr .82fr;gap:34px;align-items:center}
+.arc-list li{position:relative;padding:0 0 14px 24px;font-size:14.5px;line-height:1.95;color:var(--ink-2)}
+.arc-list li::before{content:"";position:absolute;left:4px;top:11px;width:5px;height:5px;border:1px solid var(--crimson);transform:rotate(45deg)}
+.arc-note{
+  border-left:1px solid var(--line);padding-left:20px;font-size:13.5px;line-height:2;color:var(--ink-2);
+}
+.arc-note span{display:block;font:600 9.5px/1 var(--ff-mono);letter-spacing:.24em;color:var(--crimson);margin-bottom:10px;text-transform:uppercase}
+
+/* 时间轴剧照 */
+.arc-main{min-width:0}
+.arc-shot{margin:0;border:1px solid var(--line);background:var(--paper-3);overflow:hidden}
+.arc-shot img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.arc-shot figcaption{padding:8px 10px;font-size:10.5px;letter-spacing:.12em;color:var(--ink-3);border-top:1px solid var(--line-2);background:var(--paper-2)}
+.arc-main .arc-note{margin-top:18px}
+
+/* 10 话分集截图 */
+.ep-strip{margin-top:42px;border-top:1px solid var(--line);padding-top:22px}
+.ep-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
+.ep-head b{font-family:var(--ff-serif);font-size:16px;font-weight:600;letter-spacing:.08em}
+.ep-head span{font:500 9.5px/1 var(--ff-mono);letter-spacing:.2em;color:var(--ink-3);text-transform:uppercase}
+.ep-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.ep-row .gal-item{aspect-ratio:16/9;border-color:var(--line-2)}
+.ep-row .gal-item figcaption{opacity:1;transform:none;padding:22px 9px 7px;font:600 9.5px/1 var(--ff-mono);letter-spacing:.14em}
+
+/* 测验反馈 */
+.q-fb{display:flex;align-items:center;gap:10px;margin-top:16px;padding:10px 14px;border:1px dashed var(--line);background:color-mix(in srgb,var(--paper) 70%,transparent);animation:fbIn .35s ease}
+@keyframes fbIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.q-fb img{width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
+.q-fb span{font-size:12.5px;color:var(--ink-2);letter-spacing:.04em}
+
+/* 结果页 */
+.res-face{height:124px;width:auto;margin:0 auto 8px;display:block}
+.res-scores{max-width:330px;margin:22px auto 0;display:flex;flex-direction:column;gap:7px}
+.res-scores li{display:grid;grid-template-columns:4.9em 1fr 3em;gap:10px;align-items:center;font-size:11px;letter-spacing:.06em;color:var(--ink-3)}
+.res-scores i{display:block;height:4px;border-radius:99px;background:color-mix(in srgb,var(--ink) 9%,transparent);overflow:hidden}
+.res-scores b{display:block;height:100%;width:0;border-radius:99px;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.res-scores em{font-style:normal;text-align:right;font-family:var(--ff-mono);font-size:10px}
+.res-scores li.on{color:var(--ink)}
+.res-scores li.on em{color:var(--rc)}
+
+/* 回到顶部 */
+.chibi-top{
+  position:fixed;right:22px;bottom:22px;z-index:80;width:58px;height:58px;border-radius:50%;
+  background:var(--paper-2);border:1px solid var(--line);display:grid;place-items:center;
+  box-shadow:0 14px 28px -16px rgba(60,45,25,.65);
+  opacity:0;visibility:hidden;transform:translateY(14px);
+  transition:opacity .35s ease,transform .35s ease,visibility .35s;
+}
+.chibi-top.on{opacity:1;visibility:visible;transform:none}
+.chibi-top img{width:46px;height:46px;border-radius:50%;object-fit:cover}
+.chibi-top:hover{transform:translateY(-3px)}
+.chibi-top span{
+  position:absolute;right:70px;white-space:nowrap;font-size:11px;letter-spacing:.08em;
+  background:var(--ink);color:var(--paper);padding:6px 11px;border-radius:999px;
+  opacity:0;transform:translateX(6px);transition:all .25s ease;pointer-events:none;
+}
+.chibi-top:hover span{opacity:1;transform:none}
+
+/* ============ 读后感 ============ */
+.read-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px 34px}
+.read-card{
+  display:grid;grid-template-columns:124px 1fr;gap:20px;
+  padding-top:20px;border-top:1px solid var(--line);--c:var(--gold);
+}
+.read-fig{
+  align-self:start;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;
+  padding:10px 10px 0;border:1px solid color-mix(in srgb,var(--c) 26%,var(--line));
+  background:linear-gradient(180deg,color-mix(in srgb,var(--c) 11%,var(--paper-2)),color-mix(in srgb,var(--c) 3%,var(--paper-2)));
+}
+.read-fig img{width:100%;height:126px;object-fit:contain;object-position:bottom;filter:drop-shadow(0 8px 10px rgba(70,55,30,.14));transition:transform .5s ease}
+.read-card:hover .read-fig img{transform:translateY(-3px) scale(1.02)}
+.read-no{display:block;font:600 9.5px/1 var(--ff-mono);letter-spacing:.2em;color:var(--c)}
+.read-body h3{font-family:var(--ff-serif);font-size:18px;font-weight:600;line-height:1.6;letter-spacing:.03em;margin:9px 0 8px}
+.read-body p{font-size:13.5px;line-height:1.95;color:var(--ink-2)}
+
+.read-close{
+  margin:56px auto 0;max-width:44ch;text-align:center;
+  font-family:var(--ff-serif);font-size:clamp(16px,1.9vw,20px);line-height:2;color:var(--ink);letter-spacing:.04em;
+}
+.read-close::before{content:"";display:block;width:38px;height:1px;background:var(--gold);opacity:.5;margin:0 auto 26px}
+
+/* ============ 画集 ============ */
+.gal{display:grid;gap:14px}
+.gal-a{display:grid;grid-template-columns:5fr 7fr;gap:14px;align-items:stretch}
+.gal-item{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--paper-3);cursor:zoom-in;margin:0}
+.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.gal-item:hover img{transform:scale(1.035)}
+.gal-item::after{
+  content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);pointer-events:none;
+}
+.gal-item figcaption{
+  position:absolute;left:0;right:0;bottom:0;margin:0;padding:30px 14px 10px;
+  font:500 10.5px/1.5 var(--ff-sans);letter-spacing:.1em;color:#fff;
+  background:linear-gradient(180deg,transparent,rgba(24,17,12,.74));
+  opacity:0;transform:translateY(6px);transition:opacity .35s ease,transform .35s ease;
+}
+.gal-item:hover figcaption,.gal-item:focus-within figcaption{opacity:1;transform:none}
+.gal-a .gal-key img{height:auto}
+.gal-a .gal-map img{position:absolute;inset:0}
+.gal-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.gal-strip .gal-item{aspect-ratio:300/427}
+.gal-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.gal-two .gal-item{aspect-ratio:16/9}
+
+/* 灯箱 */
+.lightbox{
+  position:fixed;inset:0;z-index:120;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  padding:30px;background:rgba(20,16,12,.93);backdrop-filter:blur(8px);
+  visibility:hidden;opacity:0;transition:opacity .3s ease,visibility .3s;
+}
+.lightbox.open{visibility:visible;opacity:1}
+.lightbox img{max-width:min(1080px,92vw);max-height:76vh;object-fit:contain;box-shadow:0 40px 90px rgba(0,0,0,.6)}
+.lightbox p{margin:0;color:#f2ebdd;font-size:11.5px;letter-spacing:.16em;opacity:.75}
+.lb-x{position:absolute;right:26px;top:22px;width:40px;height:40px;border:1px solid rgba(255,255,255,.35);border-radius:50%;color:#f2ebdd;font-size:15px;transition:all .25s ease}
+.lb-x:hover{background:#f2ebdd;color:#211d18;border-color:#f2ebdd}
+
+/* 链条 */
+.chain-wrap{margin-top:20px;border:1px solid var(--line);background:var(--paper-2);padding:clamp(20px,3.4vw,36px)}
+.chain-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:26px}
+.chain-head h3{font-family:var(--ff-serif);font-size:22px;font-weight:600;letter-spacing:.05em}
+.chain-head p{font-size:12px;letter-spacing:.08em;color:var(--ink-3)}
+.chain{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative}
+.chain::before{content:"";position:absolute;left:6%;right:6%;top:50%;height:1px;background:var(--line);z-index:0}
+.link{
+  position:relative;z-index:1;text-align:left;padding:18px 16px;background:var(--paper);
+  border:1px solid var(--line);transition:all .35s ease;
+}
+.link:hover{border-color:color-mix(in srgb,var(--lc) 55%,var(--line));transform:translateY(-3px)}
+.link.on{background:color-mix(in srgb,var(--lc) 9%,var(--paper-2));border-color:var(--lc);box-shadow:0 16px 34px -28px var(--lc)}
+.link em{display:block;font-style:normal;font:600 9px/1 var(--ff-mono);letter-spacing:.18em;color:var(--lc);margin-bottom:8px}
+.link b{display:block;font-family:var(--ff-serif);font-size:17px;font-weight:600;letter-spacing:.05em}
+.link span{display:block;margin-top:4px;font-size:11.5px;color:var(--ink-3)}
+.chain-panel{margin-top:22px;padding-top:20px;border-top:1px dashed var(--line);min-height:86px}
+.chain-panel p{font-size:14.5px;line-height:1.95;color:var(--ink-2);max-width:70ch}
+.chain-panel p b{color:var(--ink);font-weight:600}
+.chain-panel .hint{color:var(--ink-3);font-size:12.5px;letter-spacing:.08em}
+
+/* ============ 台词（深色带）============ */
+.quotes{position:relative;overflow:hidden;background:#211d18;color:#f4ecdd;padding:100px 0 86px;isolation:isolate}
+.quotes::before{
+  content:"";position:absolute;inset:0;z-index:-1;opacity:.16;
+  background:url("assets/shrine.jpg") center 40%/cover no-repeat;
+  filter:saturate(.7) contrast(.9);
+}
+.quotes::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(ellipse at 30% 30%,rgba(43,150,168,.28),transparent 58%),linear-gradient(180deg,rgba(33,29,24,.86),rgba(33,29,24,.96));
+}
+.quotes .wrap{position:relative;z-index:2}
+.q-fig{
+  position:absolute;right:4vw;bottom:0;height:82%;z-index:0;pointer-events:none;
+  display:flex;align-items:flex-end;
+  -webkit-mask-image:linear-gradient(180deg,#000 80%,rgba(0,0,0,0) 100%);
+  mask-image:linear-gradient(180deg,#000 80%,rgba(0,0,0,0) 100%);
+}
+.q-fig img{
+  height:100%;width:auto;opacity:.98;
+  transition:opacity .35s ease,transform .7s cubic-bezier(.2,.7,.2,1);
+}
+.q-fig img.hide{opacity:0;transform:translateY(8px)}
+.q-fig::after{
+  content:"";position:absolute;left:6%;right:6%;bottom:-6px;height:54px;z-index:-1;
+  background:radial-gradient(ellipse at 50% 100%,rgba(0,0,0,.55),rgba(0,0,0,0) 72%);
+}
+.q-eyebrow{font:500 10px/1 var(--ff-mono);letter-spacing:.3em;color:rgba(244,236,221,.5);text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.q-eyebrow::after{content:"";height:1px;flex:1;max-width:120px;background:rgba(244,236,221,.2)}
+.q-stage{margin-top:44px;min-height:250px;max-width:64%;display:flex;flex-direction:column;justify-content:center}
+.q-text{
+  font-family:var(--ff-serif);font-size:clamp(24px,3.6vw,42px);line-height:1.72;letter-spacing:.03em;
+  max-width:22em;transition:opacity .35s ease,transform .35s ease;
+}
+.q-text::before{content:"「";color:rgba(244,236,221,.3)}
+.q-text::after{content:"」";color:rgba(244,236,221,.3)}
+.q-text.swap{opacity:0;transform:translateY(8px)}
+.q-by{display:flex;align-items:center;gap:14px;margin-top:26px;font-size:12px;letter-spacing:.2em;color:rgba(244,236,221,.72)}
+.q-by i{display:block;width:34px;height:1px;background:currentColor;opacity:.6}
+.q-ctx{margin-top:14px;font-size:13px;line-height:1.9;color:rgba(244,236,221,.5);max-width:56ch;transition:opacity .35s ease}
+.q-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:38px;padding-top:24px;border-top:1px solid rgba(244,236,221,.14)}
+.q-tab{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:999px;
+  border:1px solid rgba(244,236,221,.18);font-size:12px;letter-spacing:.1em;color:rgba(244,236,221,.65);
+  transition:all .3s ease;
+}
+.q-tab img{width:21px;height:21px;border-radius:50%;object-fit:cover;border:1px solid rgba(244,236,221,.28);background:#2b2620}
+.q-tab i{width:6px;height:6px;border-radius:50%;background:var(--tc)}
+.q-tab:hover{color:#f4ecdd;border-color:rgba(244,236,221,.4)}
+.q-tab.on{color:#211d18;background:#f4ecdd;border-color:#f4ecdd}
+.q-note{margin-top:20px;font-size:10.5px;letter-spacing:.14em;color:rgba(244,236,221,.34)}
+
+/* ============ 测验 ============ */
+.quiz-card{max-width:780px;margin-inline:auto;background:var(--paper-2);border:1px solid var(--line);padding:clamp(24px,4vw,44px);position:relative;box-shadow:var(--shadow)}
+.quiz-card::before{content:"";position:absolute;inset:8px;border:1px solid var(--line-2);pointer-events:none}
+.quiz-inner{position:relative;z-index:1}
+.quiz-bar{height:2px;background:color-mix(in srgb,var(--ink) 10%,transparent);overflow:hidden;margin-bottom:26px}
+.quiz-bar i{display:block;height:100%;width:0;background:var(--aqua);transition:width .45s cubic-bezier(.2,.7,.2,1)}
+.q-meta{display:flex;justify-content:space-between;align-items:center;font:500 10px/1 var(--ff-mono);letter-spacing:.2em;color:var(--ink-3);margin-bottom:18px;text-transform:uppercase}
+.q-title{font-family:var(--ff-serif);font-size:clamp(20px,2.6vw,26px);line-height:1.65;font-weight:600;letter-spacing:.02em;min-height:3.2em;text-wrap:balance}
+.q-opts{display:flex;flex-direction:column;gap:9px;margin-top:24px}
+.q-opt{
+  display:flex;align-items:flex-start;gap:14px;text-align:left;padding:14px 18px;
+  border:1px solid var(--line);background:color-mix(in srgb,var(--paper) 60%,transparent);
+  font-size:14px;line-height:1.7;color:var(--ink-2);transition:all .25s ease;
+}
+.q-opt:hover{border-color:var(--ink);color:var(--ink);background:var(--paper)}
+.q-opt .k{font:600 10px/1.7 var(--ff-mono);letter-spacing:.1em;color:var(--ink-3);flex-shrink:0}
+.q-opt.pick{border-color:var(--aqua);background:color-mix(in srgb,var(--aqua) 10%,transparent);color:var(--ink)}
+.q-opt.fade{opacity:.35}
+.quiz-result{display:none;text-align:center;padding:10px 0 4px}
+.quiz-result.on{display:block;animation:rise .55s cubic-bezier(.2,.7,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.res-mark{width:96px;height:96px;margin:0 auto 18px;color:var(--rc)}
+.res-kicker{font:600 10px/1 var(--ff-mono);letter-spacing:.28em;color:var(--ink-3);text-transform:uppercase}
+.res-name{font-family:var(--ff-serif);font-size:clamp(28px,4vw,38px);font-weight:600;letter-spacing:.08em;margin-top:12px}
+.res-title{display:inline-block;margin-top:12px;padding:5px 14px;border:1px solid color-mix(in srgb,var(--rc) 50%,transparent);color:var(--rc);font-size:11.5px;letter-spacing:.16em}
+.res-desc{max-width:46ch;margin:22px auto 0;font-size:14.5px;line-height:2;color:var(--ink-2)}
+.res-match{margin-top:18px;font-size:12.5px;color:var(--ink-3);letter-spacing:.06em}
+.res-match b{color:var(--rc);font-weight:600}
+.res-actions{display:flex;justify-content:center;gap:10px;margin-top:26px}
+
+/* ============ 页脚 ============ */
+.foot{padding:52px 0 40px;border-top:1px solid var(--line);background:color-mix(in srgb,var(--paper-3) 35%,transparent)}
+.foot-inner{display:flex;flex-wrap:wrap;gap:26px;justify-content:space-between;align-items:flex-start}
+.foot-cast{display:flex;gap:8px;margin-bottom:16px}
+.foot-cast img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid var(--line);background:var(--paper-2)}
+.foot-brand{font-family:var(--ff-serif);font-size:17px;letter-spacing:.08em}
+.foot-brand em{font-style:normal;color:var(--crimson);margin:0 6px}
+.foot-note{max-width:62ch;margin-top:12px;font-size:11.5px;line-height:1.95;color:var(--ink-3)}
+.to-top{display:inline-flex;align-items:center;gap:8px;font:500 10.5px/1 var(--ff-mono);letter-spacing:.2em;color:var(--ink-2);border-bottom:1px solid var(--line);padding-bottom:6px;transition:color .25s,border-color .25s}
+.to-top:hover{color:var(--crimson);border-color:var(--crimson)}
+
+/* ============ 弹窗 ============ */
+.modal{position:fixed;inset:0;z-index:110;display:flex;align-items:center;justify-content:center;padding:20px;visibility:hidden;opacity:0;transition:opacity .3s ease,visibility .3s}
+.modal.open{visibility:visible;opacity:1}
+.modal-bg{position:absolute;inset:0;background:color-mix(in srgb,var(--ink) 55%,transparent);backdrop-filter:blur(6px)}
+.modal-card{
+  position:relative;width:min(760px,100%);max-height:88vh;overflow:auto;background:var(--paper-2);
+  border:1px solid var(--line);box-shadow:0 40px 90px -40px rgba(0,0,0,.5);
+  transform:translateY(16px) scale(.985);transition:transform .4s cubic-bezier(.2,.7,.2,1);
+}
+.modal.open .modal-card{transform:none}
+.modal-x{position:absolute;right:14px;top:14px;width:34px;height:34px;border:1px solid var(--line);border-radius:50%;color:var(--ink-2);z-index:3;background:var(--paper-2)}
+.modal-x:hover{border-color:var(--crimson);color:var(--crimson)}
+.m-head{position:relative;padding:34px 34px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:20px;overflow:hidden}
+.m-head::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
+.m-no{font:600 10px/1 var(--ff-mono);letter-spacing:.2em;color:var(--c);writing-mode:vertical-rl}
+.m-head h3{font-family:var(--ff-serif);font-size:32px;font-weight:600;letter-spacing:.06em;line-height:1.3}
+.m-head p{margin-top:6px;font:500 10.5px/1.5 var(--ff-mono);letter-spacing:.2em;color:var(--ink-3);text-transform:uppercase}
+.m-mark{position:absolute;right:62px;top:22px;width:86px;height:86px;color:var(--c);opacity:.14}
+.m-mark svg{width:100%;height:100%}
+.m-quote{padding:22px 34px;border-bottom:1px solid var(--line-2);font-family:var(--ff-serif);font-size:17px;line-height:1.9;color:var(--ink);background:color-mix(in srgb,var(--c) 5%,transparent)}
+.m-grid{padding:26px 34px 6px;display:grid;grid-template-columns:1fr 1fr;gap:24px 30px}
+.m-grid section.wide{grid-column:1/-1}
+.m-grid h4{font:600 9.5px/1 var(--ff-mono);letter-spacing:.24em;color:var(--c);text-transform:uppercase;margin-bottom:10px}
+.m-grid p{font-size:13.8px;line-height:1.95;color:var(--ink-2)}
+.m-tags{display:flex;flex-wrap:wrap;gap:7px;padding:18px 34px 32px}
+.m-tags span{font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--line);padding:4px 10px;border-radius:999px}
+
+/* ============ 爆裂特效 ============ */
+.boom{position:fixed;inset:0;z-index:130;pointer-events:none;visibility:hidden;opacity:0;overflow:hidden}
+.boom.on{visibility:visible;animation:boomOut 2s ease forwards}
+@keyframes boomOut{0%{opacity:1}80%{opacity:1}100%{opacity:0}}
+.boom-flash{position:absolute;inset:0;opacity:0;background:radial-gradient(circle at 50% 56%,#fff 0%,#ffe0a8 14%,#ef6a34 38%,rgba(150,26,14,.92) 62%,rgba(24,12,10,.96) 100%)}
+.boom.on .boom-flash{animation:flash 2s ease-out forwards}
+@keyframes flash{0%{opacity:0}6%{opacity:1}34%{opacity:.92}100%{opacity:0}}
+.boom-ring{position:absolute;left:50%;top:56%;width:14vmax;height:14vmax;margin:-7vmax 0 0 -7vmax;border-radius:50%;border:2px solid rgba(255,226,190,.9);opacity:0}
+.boom.on .boom-ring{animation:ring 1.5s cubic-bezier(.15,.7,.25,1) forwards}
+.boom-ring:nth-child(3){animation-delay:.12s;border-width:1px}
+@keyframes ring{0%{transform:scale(.15);opacity:0}12%{opacity:1}100%{transform:scale(9);opacity:0}}
+.boom-word{
+  position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;
+  font-family:var(--ff-serif);font-size:clamp(38px,9vw,110px);letter-spacing:.14em;font-weight:700;
+  color:#fff7e8;text-shadow:0 0 40px rgba(255,170,90,.9),0 0 90px rgba(230,70,30,.8);
+  opacity:0;
+}
+.boom.on .boom-word{animation:word 2s cubic-bezier(.18,.8,.2,1) forwards}
+@keyframes word{0%{opacity:0;transform:translateY(-50%) scale(.4);filter:blur(10px)}12%{opacity:1;transform:translateY(-50%) scale(1.04);filter:blur(0)}24%{transform:translateY(-50%) scale(1)}72%{opacity:1}100%{opacity:0;transform:translateY(-50%) scale(1.14)}}
+
+/* ============ 响应式 ============ */
+@media (max-width:980px){
+  .pro-grid{grid-template-columns:1fr;gap:34px}
+  .world-grid{grid-template-columns:1fr;gap:24px}
+  .world-note{grid-column:auto}
+  .arc-content{grid-template-columns:1fr;gap:20px}
+  .arc-note{border-left:0;border-top:1px solid var(--line);padding:18px 0 0}
+  .chain{grid-template-columns:repeat(2,1fr)}
+  .chain::before{display:none}
+}
+@media (max-width:860px){
+  .nav-links{display:none}
+  .burger{display:flex;margin-left:auto}
+  .nav-tools{margin-left:8px}
+  .hero{padding-top:100px}
+  .hero-side{display:none}
+  .hero-rune{right:-26vw;bottom:-8vh;width:80vw;opacity:.18}
+  .cast-grid{grid-template-columns:1fr}
+  .support-grid{grid-template-columns:1fr 1fr}
+  .sec-sticker{display:none}
+  .read-grid{grid-template-columns:1fr;gap:24px}
+  .gal-a{grid-template-columns:1fr;gap:14px}
+  .gal-a .gal-map{aspect-ratio:16/10}
+  .gal-strip{grid-template-columns:repeat(3,1fr)}
+  .sec{padding:78px 0}
+}
+@media (max-width:620px){
+  body{font-size:15px}
+  .hero-title{font-size:clamp(40px,12vw,58px)}
+  .hero-meta{gap:8px 16px;font-size:11px}
+  .hero-meta li+li{padding-left:0;border-left:0}
+  .sec-en{display:none}
+  .sec-head h2{font-size:23px;letter-spacing:.03em}
+  .world-grid{grid-template-columns:1fr}
+  .read-card{grid-template-columns:96px 1fr;gap:14px}
+  .read-fig img{height:102px}
+  .gal-strip{grid-template-columns:repeat(2,1fr)}
+  .ep-row{grid-template-columns:repeat(2,1fr)}
+  .chibi-top{width:50px;height:50px;right:16px;bottom:16px}
+  .chibi-top img{width:40px;height:40px}
+  .gal-two{grid-template-columns:1fr}
+  .char{padding:22px 22px 18px;min-height:380px}
+  .char-name{font-size:25px;max-width:58%}
+  .char-tag{max-width:58%;font-size:12.5px}
+  .bars{max-width:66%}
+  .char-fig{width:50%;top:22px;bottom:0;right:-10px}
+  .m-grid{grid-template-columns:1fr;padding-inline:24px}
+  .m-head{padding-inline:24px}
+  .m-quote{padding-inline:24px;font-size:15.5px}
+  .m-tags{padding-inline:24px}
+  .arc-head{grid-template-columns:1fr 30px;gap:6px 12px;padding:20px 0}
+  .arc-range{grid-column:1/-1}
+  .arc-content{padding-bottom:24px}
+  .chain{grid-template-columns:1fr}
+  .support-grid{grid-template-columns:1fr}
+  .q-stage{min-height:200px;max-width:100%}
+  .q-fig{display:none}
+  .quotes{padding:76px 0 58px}
+  .scroll-cue{display:none}
+  .hero-credit{right:18px;bottom:16px;font-size:10px;letter-spacing:.12em;opacity:.85}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top"><b>祝福<em>·</em></b><span>KonoSuba S1</span></a>
+  <nav class="nav-links" id="navLinks" aria-label="页面导航">
+    <a href="#prologue">序</a>
+    <a href="#world">世界</a>
+    <a href="#cast">角色</a>
+    <a href="#season">第一季</a>
+    <a href="#read">读后感</a>
+    <a href="#gallery">画集</a>
+    <a href="#quotes">台词</a>
+    <a href="#quiz">测验</a>
+  </nav>
+  <div class="nav-tools">
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="切换日夜">☾</button>
+    <button class="burger" id="burger" type="button" aria-label="菜单" aria-expanded="false"><i></i><i></i><i></i></button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#prologue">序 · 我为什么写这一页</a>
+  <a href="#world">世界 · 阿克塞尔</a>
+  <a href="#cast">角色 · 四个问题儿童</a>
+  <a href="#season">第一季 · 十话</a>
+  <a href="#read">读后感 · 我记住的四个瞬间</a>
+  <a href="#gallery">画集 · 第一季的图</a>
+  <a href="#quotes">台词 · 印象</a>
+  <a href="#quiz">测验 · 你是队伍里的谁</a>
+</div>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-bg" src="assets/axel.jpg" srcset="assets/axel-sm.jpg 480w, assets/axel.jpg 1536w" sizes="100vw" alt="黄昏下的阿克塞尔小镇（原创场景插画）" fetchpriority="high">
+    <div class="hero-veil"></div>
+    <canvas class="hero-particles" id="particles" aria-hidden="true"></canvas>
+    <div class="hero-rune" aria-hidden="true">
+      <svg viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="1">
+        <circle cx="200" cy="200" r="196" stroke-opacity=".35"/>
+        <circle cx="200" cy="200" r="176" stroke-opacity=".55" stroke-dasharray="2 11"/>
+        <circle cx="200" cy="200" r="148" stroke-opacity=".3"/>
+        <circle cx="200" cy="200" r="116" stroke-opacity=".5" stroke-dasharray="1 7"/>
+        <circle cx="200" cy="200" r="62" stroke-opacity=".45"/>
+        <path d="M200 4v392M4 200h392" stroke-opacity=".16"/>
+        <path d="M62 62l276 276M338 62L62 338" stroke-opacity=".1"/>
+        <g stroke-opacity=".7">
+          <rect x="196" y="16" width="8" height="8" transform="rotate(45 200 20)"/>
+          <rect x="196" y="376" width="8" height="8" transform="rotate(45 200 380)"/>
+          <rect x="16" y="196" width="8" height="8" transform="rotate(45 20 200)"/>
+          <rect x="376" y="196" width="8" height="8" transform="rotate(45 380 200)"/>
+          <rect x="128" y="46" width="6" height="6" transform="rotate(45 131 49)" stroke-opacity=".5"/>
+          <rect x="266" y="46" width="6" height="6" transform="rotate(45 269 49)" stroke-opacity=".5"/>
+          <rect x="128" y="348" width="6" height="6" transform="rotate(45 131 351)" stroke-opacity=".5"/>
+          <rect x="266" y="348" width="6" height="6" transform="rotate(45 269 351)" stroke-opacity=".5"/>
+        </g>
+        <path d="M200 84l28 88 88 28-88 28-28 88-28-88-88-28 88-28z" stroke-opacity=".1"/>
+      </svg>
+    </div>
+
+    <div class="wrap">
+      <div class="hero-inner">
+        <p class="eyebrow"><span class="pulse"></span>TV Anime · 2016 · Season 01</p>
+        <h1 class="hero-title">
+          <span>为美好的世界</span>
+          <span class="accent">献上<em>祝福</em></span>
+        </h1>
+        <p class="hero-jp">この素晴らしい世界に祝福を！</p>
+        <p class="hero-lede">……然后我死了。<br>死因是被拖拉机吓死。<br>醒来时，一个自称女神的人问我：<span class="nowrap">要不要去异世界？</span></p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#prologue">从头读起 <span>↓</span></a>
+          <button class="btn btn-line" id="boomBtn" type="button">咏唱「Explosion」</button>
+        </div>
+        <ul class="hero-meta">
+          <li><b>10</b>话</li>
+          <li>STUDIO DEEN</li>
+          <li>原作　暁なつめ</li>
+          <li>监督　金崎貴臣</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hero-side" aria-hidden="true">この素晴らしい世界に祝福を！</div>
+    <figure class="hero-photo">
+      <img src="assets/keyvisual.jpg" alt="《为美好的世界献上祝福！》第一季主视觉，四位主角在阿克塞尔街头奔跑" width="975" height="1147">
+      <figcaption><span>第一季主视觉 · 官方</span><em>© KADOKAWA／このすば製作委員会</em></figcaption>
+    </figure>
+    <p class="hero-credit">个人作业-孙政</p>
+    <a class="scroll-cue" href="#prologue"><i></i>Scroll</a>
+  </section>
+
+  <!-- 01 序 -->
+  <section class="sec" id="prologue">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-no">01</span>
+        <h2>序 · 一个死得很丢脸的人</h2>
+        <span class="sec-en">Prologue</span>
+        <img class="sec-sticker" src="assets/chibi/kazuma.png" alt="" aria-hidden="true">
+        <p class="sec-sub">不是资料整理，是一篇有偏见的观后感。只写第一季。</p>
+      </div>
+
+      <div class="pro-grid">
+        <div class="pro-text reveal">
+          <p class="drop">第一次看，我笑到暂停了好几次。第二次看才发现，它一直在讲一件挺丧的事：一群被世界淘汰的人，怎么在一个不讲理的地方活下去。</p>
+          <p>它明明有魔王军、有魔法、有异世界，却几乎没有一集在正经推进“打败魔王”。主角团最常面对的敌人是房租、债务、冬天，以及队友惹出来的麻烦。</p>
+          <blockquote class="pull">
+            “你想要什么，就得先付钱。<br>包括活着。”
+            <small>—— 我的观感，不是台词</small>
+          </blockquote>
+        </div>
+
+        <aside class="pro-card reveal" style="--d:120ms">
+          <span class="stamp-note">S1 ONLY</span>
+          <h3>作 品 档 案</h3>
+          <dl>
+            <div><dt>原作</dt><dd>暁なつめ</dd></div>
+            <div><dt>动画</dt><dd>STUDIO DEEN</dd></div>
+            <div><dt>监督</dt><dd>金崎貴臣</dd></div>
+            <div><dt>首播</dt><dd>2016 年 1 月</dd></div>
+            <div><dt>构成</dt><dd>全 10 话 ＋ OVA</dd></div>
+            <div><dt>基调</dt><dd>喜剧 · 奇幻 · 群像</dd></div>
+          </dl>
+          <p class="pro-note">只讨论第一季。立绘、主视觉与地图取自第一季官方网站，爆裂场景为原创生成图。</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 世界 -->
+  <section class="sec alt" id="world">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-no">02</span>
+        <h2>世界 · 新手村与它的麻烦</h2>
+        <span class="sec-en">The World</span>
+        <img class="sec-sticker round" src="assets/av/aqua.png" alt="" aria-hidden="true">
+        <p class="sec-sub">阿克塞尔——一个专门收容新手冒险者的边境小镇。它不宏伟，但足够具体。</p>
+      </div>
+
+      <div class="world-grid">
+        <article class="world-note reveal">
+          <h3>阿克塞尔<span>AXEL · 新手冒险者之镇</span></h3>
+          <p>这里有公会、有道具店、有会塌的城墙，还有一群把“讨伐魔王”挂在嘴边、每天接除草委托的冒险者。</p>
+          <ul class="world-list">
+            <li><b>一</b>死了能复活，但要付钱，还会欠债。</li>
+            <li><b>二</b>魔王军真的会来，委托板上先写着“清理下水道”。</li>
+            <li><b>三</b>最靠谱的人，通常是最想躺着的人。</li>
+          </ul>
+          <p class="world-close">所有奇幻元素，最后都要服从经济规律。</p>
+        </article>
+
+        <figure class="world-fig reveal" style="--d:120ms">
+          <img src="assets/axel-map.jpg" alt="阿克塞尔全景设定图：被城墙环绕、有河流穿过的圆形小镇" loading="lazy">
+          <figcaption>阿克塞尔 · 全景设定 <em>OFFICIAL ART</em></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 角色 -->
+  <section class="sec" id="cast">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-no">03</span>
+        <h2>角色 · 四个人，四种灾难</h2>
+        <span class="sec-en">Party Members</span>
+        <p class="sec-sub">点开任意一张卡片，看完整的角色档案。数值不是官方设定，是我按第一季表现瞎打的，请勿当真。</p>
+      </div>
+
+      <div class="cast-grid" id="castGrid"></div>
+
+      <div class="support reveal">
+        <p class="support-head">Supporting Cast · 第一季的其他人</p>
+        <div class="support-grid" id="supportGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 第一季 -->
+  <section class="sec alt" id="season">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-no">04</span>
+        <h2>第一季 · 十话，五个段落</h2>
+        <span class="sec-en">Season One</span>
+        <img class="sec-sticker" src="assets/chibi/megumin.png" alt="" aria-hidden="true">
+        <p class="sec-sub">日常 → 灾难 → 更离谱的日常。危机没让他们变强，只让他们更熟练地收拾残局。</p>
+      </div>
+
+      <div class="season-top reveal">
+        <div class="ribbon" id="ribbon" aria-hidden="true"></div>
+        <p>全 10 话 ／ 2016 年 1–3 月 ／ 点击段落展开</p>
+      </div>
+
+      <div id="arcs"></div>
+
+      <div class="ep-strip reveal">
+        <div class="ep-head"><b>十话 · 原片截图</b><span>Click to enlarge</span></div>
+        <div class="ep-row" id="epRow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 视觉间奏 -->
+  <section class="band" aria-label="爆裂魔法">
+    <img src="assets/explosion.jpg" alt="原创意象插画：平原上巨大的爆裂火光" loading="lazy">
+    <div class="band-cap">
+      <p>一 天 一 发</p>
+      <small>Explosion · 惠惠的爆裂魔法</small>
+    </div>
+  </section>
+
+  <!-- 05 读后感 -->
+  <section class="sec" id="read">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-no">05</span>
+        <h2>读后感 · 我记住的四个瞬间</h2>
+        <span class="sec-en">Afterthoughts</span>
+        <p class="sec-sub">不是剧评。只是看完之后，一直留在脑子里的四件事。</p>
+      </div>
+
+      <div class="read-grid">
+        <article class="read-card reveal" style="--c:var(--green)">
+          <div class="read-fig"><img src="assets/face/kazuma.png?v=2" alt="佐藤和真的表情设定" loading="lazy"></div>
+          <div class="read-body">
+            <span class="read-no">01 / 和真</span>
+            <h3>“死得最丢脸的那次，我笑了很久”</h3>
+            <p>一个连死都死得没尊严的人，被丢进需要英雄的世界。他没有变强，只学会了用最少的力气活下去——这点很不热血，但很像我。</p>
+          </div>
+        </article>
+
+        <article class="read-card reveal" style="--c:var(--aqua);--d:80ms">
+          <div class="read-fig"><img src="assets/face/aqua.png?v=2" alt="阿库娅的表情设定" loading="lazy"></div>
+          <div class="read-body">
+            <span class="read-no">02 / 阿库娅</span>
+            <h3>“她哭的时候，我居然有点心疼”</h3>
+            <p>全队最该被嫌弃的人。可她每次真的哭出来，我又觉得世界对她太苛刻——她的快乐和难过都太直接，直接到不像一个神。</p>
+          </div>
+        </article>
+
+        <article class="read-card reveal" style="--c:var(--crimson)">
+          <div class="read-fig"><img src="assets/face/megumin.png?v=2" alt="惠惠的表情设定" loading="lazy"></div>
+          <div class="read-body">
+            <span class="read-no">03 / 惠惠</span>
+            <h3>“一天一发的浪漫”</h3>
+            <p>别人算性价比，她只算今天还能不能再来一发。把全部才能压在同一个点上，这不聪明，但我很羡慕。</p>
+          </div>
+        </article>
+
+        <article class="read-card reveal" style="--c:var(--violet);--d:80ms">
+          <div class="read-fig"><img src="assets/face/darkness.png?v=2" alt="达克妮丝的表情设定" loading="lazy"></div>
+          <div class="read-body">
+            <span class="read-no">04 / 达克妮丝</span>
+            <h3>“站在最前面的那个人”</h3>
+            <p>她几乎打不中任何人，却总是第一个挡在前面。被笑了整整一季之后，我还是觉得，队伍里最勇敢的人是她。</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="chain-wrap reveal">
+        <div class="chain-head">
+          <h3>这支队伍为什么能赢</h3>
+          <p>点一下任意一环</p>
+        </div>
+        <div class="chain" id="chain"></div>
+        <div class="chain-panel" id="chainPanel" aria-live="polite">
+          <p class="hint">四个都不靠谱的人，凑在一起为什么就能解决问题？选一环看看。</p>
+        </div>
+      </div>
+
+      <p class="read-close">看完最大的感受是：它没教我怎样变强，只教我怎样在一团糟里，还能笑着吃下一顿饭。</p>
+    </div>
+  </section>
+
+  <!-- 06 画集 -->
+  <section class="sec alt" id="gallery">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-no">06</span>
+        <h2>画集 · 第一季的图</h2>
+        <span class="sec-en">Gallery</span>
+        <p class="sec-sub">官方主视觉、设定图与影碟封面，另有两张原创意象图。点开可放大。</p>
+      </div>
+
+      <div class="gal reveal">
+        <div class="gal-a">
+          <figure class="gal-item gal-key" data-cap="第一季主视觉 · 官方">
+            <img src="assets/keyvisual.jpg" alt="第一季主视觉：四位主角在阿克塞尔街头奔跑" loading="lazy">
+            <figcaption>第一季主视觉 · 官方</figcaption>
+          </figure>
+          <figure class="gal-item gal-map" data-cap="阿克塞尔 · 全景设定图（官方）">
+            <img src="assets/axel-map.jpg" alt="阿克塞尔全景设定图" loading="lazy">
+            <figcaption>阿克塞尔 · 全景设定</figcaption>
+          </figure>
+        </div>
+
+        <div class="gal-strip">
+          <figure class="gal-item" data-cap="Blu-ray 第 1 卷 封面">
+            <img src="assets/gallery/bd1.jpg" alt="Blu-ray 第1卷封面" loading="lazy"><figcaption>Blu-ray ①</figcaption>
+          </figure>
+          <figure class="gal-item" data-cap="Blu-ray 第 2 卷 封面">
+            <img src="assets/gallery/bd2.jpg" alt="Blu-ray 第2卷封面" loading="lazy"><figcaption>Blu-ray ②</figcaption>
+          </figure>
+          <figure class="gal-item" data-cap="Blu-ray 第 3 卷 封面">
+            <img src="assets/gallery/bd3.jpg" alt="Blu-ray 第3卷封面" loading="lazy"><figcaption>Blu-ray ③</figcaption>
+          </figure>
+          <figure class="gal-item" data-cap="Blu-ray 第 4 卷 封面">
+            <img src="assets/gallery/bd4.jpg" alt="Blu-ray 第4卷封面" loading="lazy"><figcaption>Blu-ray ④</figcaption>
+          </figure>
+          <figure class="gal-item" data-cap="Blu-ray 第 5 卷 封面">
+            <img src="assets/gallery/bd5.jpg" alt="Blu-ray 第5卷封面" loading="lazy"><figcaption>Blu-ray ⑤</figcaption>
+          </figure>
+        </div>
+
+        <div class="gal-two">
+          <figure class="gal-item" data-cap="爆裂之后 · 原创意象图">
+            <img src="assets/explosion.jpg" alt="原创意象插画：平原上的巨大爆裂" loading="lazy"><figcaption>爆裂之后 · 意象</figcaption>
+          </figure>
+          <figure class="gal-item" data-cap="水之圣域 · 原创意象图">
+            <img src="assets/shrine.jpg" alt="原创意象插画：水与光的神域" loading="lazy"><figcaption>水之圣域 · 意象</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 台词 -->
+  <section class="quotes" id="quotes">
+    <div class="q-fig" aria-hidden="true"><img id="qFig" src="assets/cast/megumin.png" alt=""></div>
+    <div class="wrap">
+      <p class="q-eyebrow reveal">07 · Quotes · 印象台词</p>
+      <div class="q-stage reveal">
+        <blockquote class="q-text" id="qText"></blockquote>
+        <div class="q-by"><i></i><span id="qBy"></span></div>
+        <p class="q-ctx" id="qCtx"></p>
+      </div>
+      <div class="q-tabs" id="qTabs"></div>
+      <p class="q-note">※ 中文为意译，非官方字幕；短句仅用于评论与致敬。</p>
+    </div>
+  </section>
+
+  <!-- 08 测验 -->
+  <section class="sec" id="quiz">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-no">08</span>
+        <h2>测验 · 你是这支队伍的谁</h2>
+        <span class="sec-en">Quiz</span>
+        <img class="sec-sticker round" src="assets/av/dakunes.png" alt="" aria-hidden="true">
+        <p class="sec-sub">七道题，测出你在队里的岗位。结果不具备任何现实参考价值，但很适合发给朋友互相伤害。</p>
+      </div>
+
+      <div class="quiz-card reveal">
+        <div class="quiz-inner" id="quizInner">
+          <div class="quiz-bar"><i id="quizBar"></i></div>
+          <div class="q-meta"><span id="qStep">Question 01 / 07</span><span>KonoSuba Party Test</span></div>
+          <h3 class="q-title" id="qTitle"></h3>
+          <div class="q-opts" id="qOpts"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div>
+      <div class="foot-cast" aria-hidden="true">
+        <img src="assets/av/kazuma.png" alt=""><img src="assets/av/aqua.png" alt=""><img src="assets/av/megumin.png" alt=""><img src="assets/av/darkness.png" alt="">
+      </div>
+      <p class="foot-brand">为美好的世界献上祝福<em>·</em>第一季赏析</p>
+      <p class="foot-note">非官方粉丝作品，个人观后感，非资料站。作品名、角色及相关设定版权归 暁なつめ・三嶋くろね／KADOKAWA／このすば製作委員会 所有。角色立绘、主视觉、阿克塞尔地图与分集剧照取自第一季动画官方网站；Q 版形象来自网络公开素材；爆裂场景为原创生成图。以上均仅用于非商业性评述与致敬。若有内容错漏，以原作与动画为准。如有侵权，请联系删除。</p>
+    </div>
+    <a class="to-top" href="#top">回到开头 ↑</a>
+  </div>
+</footer>
+
+<!-- 角色档案弹窗 -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="角色档案">
+  <div class="modal-bg" data-close></div>
+  <div class="modal-card">
+    <button class="modal-x" id="modalX" type="button" aria-label="关闭">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<button class="chibi-top" id="chibiTop" type="button" aria-label="回到顶部">
+  <img src="assets/av/aqua.png" alt="">
+  <span>回到开头</span>
+</button>
+
+<!-- 图片灯箱 -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="图片预览">
+  <button class="lb-x" type="button" id="lbClose" aria-label="关闭">✕</button>
+  <img id="lbImg" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+  <p id="lbCap"></p>
+</div>
+
+<!-- 爆裂特效 -->
+<div class="boom" id="boom" aria-hidden="true">
+  <div class="boom-flash"></div>
+  <div class="boom-ring"></div>
+  <div class="boom-ring"></div>
+  <div class="boom-word">EXPLOSION</div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(s,r){return (r||document).querySelector(s);};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var esc = function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+
+  /* ---------- 图标 ---------- */
+  var ICONS = {
+    kazuma:'<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M50 10l7 40-7 12-7-12z" fill="currentColor" fill-opacity=".14"/><path d="M50 10l7 40-7 12-7-12z"/><path d="M34 58h32"/><path d="M50 62v18"/><path d="M50 80l-5 8M50 80l5 8"/><rect x="66" y="16" width="18" height="18" transform="rotate(12 75 25)" stroke-opacity=".7"/><circle cx="71" cy="21" r="1.4" fill="currentColor"/><circle cx="79" cy="29" r="1.4" fill="currentColor"/></svg>',
+    aqua:'<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><ellipse cx="50" cy="17" rx="21" ry="5" stroke-opacity=".55"/><path d="M50 27c0 0 24 28 24 41a24 24 0 0 1-48 0c0-13 24-41 24-41z" fill="currentColor" fill-opacity=".12"/><path d="M50 27c0 0 24 28 24 41a24 24 0 0 1-48 0c0-13 24-41 24-41z"/><path d="M37 63c0 8 5 13 12 14" stroke-opacity=".65"/></svg>',
+    megumin:'<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M50 8l9 29 29 9-29 9-9 29-9-29-29-9 29-9z" fill="currentColor" fill-opacity=".12"/><path d="M50 8l9 29 29 9-29 9-9 29-9-29-29-9 29-9z"/><circle cx="50" cy="46" r="7"/><path d="M50 76v18M42 86h16" stroke-opacity=".55"/></svg>',
+    darkness:'<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M50 10l34 12v28c0 21-15 34-34 40-19-6-34-19-34-40V22z" fill="currentColor" fill-opacity=".12"/><path d="M50 10l34 12v28c0 21-15 34-34 40-19-6-34-19-34-40V22z"/><path d="M50 30v34M33 47h34" stroke-opacity=".85"/></svg>'
+  };
+
+  /* ---------- 角色数据 ---------- */
+  var CHARS = [
+    {
+      id:'kazuma', no:'01', name:'佐藤和真', jp:'佐藤 和真', en:'Kazuma Satou',
+      cls:'冒险者 / 盗贼系', color:'var(--green)', stamp:'常识人',
+      tag:'这个世界的常识担当（被迫）',
+      quote:'「先别谈拯救世界，这个月的房租怎么办？」',
+      stats:[['幸运','95'],['智力','72'],['战斗力','38'],['麻烦度','55']],
+      bio:'死因是被拖拉机吓死——一个足以概括他全部人生的开端。转生时没有选圣剑，也没有选神力，只带走了那个刚刚嘲笑过他的女神。于是他的异世界生活从一间马厩开始。',
+      scene:'第一季里他几乎没有赢过一场正面战斗：对贝露迪亚靠的是偷、骗、把队友当诱饵；对冬将军死得毫无尊严；对机动要塞，他能做的只是把一颗会爆炸的石头随机传送出去。',
+      view:'和真是这部作品的锚。他不热血、不好色得意、也不算勇敢，但他有全队唯一的东西——常识，以及一种很务实的温柔：所有人都可以发疯，总得有人去结账。',
+      tags:['盗贼技能','幸运','吐槽役','逃跑大师']
+    },
+    {
+      id:'aqua', no:'02', name:'阿库娅', jp:'アクア', en:'Aqua',
+      cls:'自称女神 / 大祭司', color:'var(--aqua)', stamp:'駄女神',
+      tag:'全队最强的后勤，最贵的事故源',
+      quote:'「我可是女神哦！」',
+      stats:[['神力','96'],['智力','8'],['幸运','5'],['麻烦度','100']],
+      bio:'掌管水的女神，被和真一气之下带到了异世界。净化、复活、破结界样样在行，唯独在“判断状况”这件事上毫无神性。她的存款和她的自尊一样，经常归零。',
+      scene:'第一季的高光在第 10 话：她一个人解开了机动要塞的魔法结界。那一刻你会短暂地相信她真的是神——然后她立刻因为别的事哭了起来。',
+      view:'阿库娅是整部作品的节拍器。她制造麻烦，也负责兜底：没有她，队伍会死；有了她，队伍会想死。她的存在证明了“有用”和“可靠”是两件完全不同的事。',
+      tags:['净化','复活','宴会艺','破结界']
+    },
+    {
+      id:'megumin', no:'03', name:'惠惠', jp:'めぐみん', en:'Megumin',
+      cls:'大魔法师 / 爆裂魔法', color:'var(--crimson)', stamp:'中二病',
+      tag:'一天一发，一发入魂',
+      quote:'「Explosion！」',
+      stats:[['火力','100'],['智力','66'],['体力','6'],['中二度','100']],
+      bio:'红魔族出身的魔法师，把全部的技能点都投进了爆裂魔法。一天只能放一次，放完就会倒下，需要人背回去。她对此毫无反省，并且以此为荣。',
+      scene:'第一季里她最像主角的一刻，是把废弃城堡当成练习场——而那恰好是魔王军干部贝露迪亚的住处。危机不是找上门的，是被炸出来的。',
+      view:'惠惠的浪漫在于“不经济”。在一个讲究性价比的世界里，她坚持把所有的才能压在一个点上。这不聪明，但很美。而队伍愿意背她回家，就是这个故事最温柔的部分。',
+      tags:['爆裂魔法','红魔族','一天一发','需要人背']
+    },
+    {
+      id:'darkness', no:'04', name:'达克妮丝', jp:'ダクネス', en:'Darkness',
+      cls:'十字骑士 / 护卫', color:'var(--violet)', stamp:'変態',
+      tag:'本名拉拉蒂娜，请不要这样叫她',
+      quote:'「请、请再多打我几下！」',
+      stats:[['防御','100'],['命中','4'],['家世','98'],['变态','100']],
+      bio:'达斯提尼斯家的千金，为了成为骑士而离家。防御力高到离谱，攻击几乎从不命中。她最大的问题不是打不中，而是她并不想打中。',
+      scene:'第一季里她挡下了很多次本该落在队友身上的攻击。她一边挨打一边说着让人无法接话的台词，然后在关键时刻，比谁都站得稳。',
+      view:'她是这部作品里最“矛盾”的角色：骑士的忠诚与个人的癖好，在她身上达成了奇妙的和解。别人笑她，但真出事的时候，队伍第一个找的永远是她。',
+      tags:['十字骑士','高防御','零命中','拉拉蒂娜']
+    }
+  ];
+
+  var SUPPORT = [
+    {n:'维兹', r:'不死者之王 / 道具店老板', img:'wiz', d:'魔王军前干部，现在开着全城最冷清的道具店。温柔、贫穷、可靠，必要时还能再来一发爆裂魔法。'},
+    {n:'贝露迪亚', r:'魔王军干部 / 无头骑士', img:'dullahan', d:'第一季真正意义上的反派。住处被惠惠当成练习场炸了，于是循着痕迹一路找上门来。'},
+    {n:'厄里斯', r:'幸运女神', img:'eris', d:'和真第二次死亡时遇见的女神。温柔，且对前辈阿库娅的评价相当克制。'},
+    {n:'御剑响夜', r:'勇者 / 阿库娅信徒', img:'kyoya', d:'带着魔剑的转生者，第一季里被和真轻松教育，魔剑随后被卖掉抵债。'}
+  ];
+
+  /* ---------- 剧情 ---------- */
+  var ARC_IMGS = ['ep01','ep04','ep06','ep07','ep10'];
+
+  var ARCS = [
+    {
+      range:'第 1–2 话', tag:'转生 / 入团', title:'死因：被拖拉机吓死',
+      lines:[
+        '为救“被卡车撞到的女孩”冲上马路，结果那是一台很慢的拖拉机——他是被吓死的。',
+        '在天界嘲笑了女神阿库娅，于是把她一起带去异世界；随后与惠惠、达克妮丝组队，住进马厩。'
+      ],
+      note:'转生手续像办事大厅。宏大叙事从这里开始，被降级成了日常。'
+    },
+    {
+      range:'第 3–4 话', tag:'日常 / 爆裂', title:'废城里的练习场',
+      lines:[
+        '接委托、被青蛙追、赔钱，是这支队伍的日常。',
+        '每天陪惠惠去废城练爆裂魔法——而那正是魔王军干部贝露迪亚的住处。'
+      ],
+      note:'所有灾难都源于一个很具体的理由：她想再放一发。'
+    },
+    {
+      range:'第 5–6 话', tag:'魔王军 / 决战', title:'无头骑士找上门',
+      lines:[
+        '净化湖水、御剑响夜上门挑战，魔剑被卖掉抵债。',
+        '贝露迪亚循着爆裂痕迹找来，最后靠和真的阴招和阿库娅的净化收场。'
+      ],
+      note:'没有一个人能单独赢，但“不体面”加在一起刚好能赢。'
+    },
+    {
+      range:'第 7–8 话', tag:'冬天 / 死亡 / 搬家', title:'在冰冻的季节里再死一次',
+      lines:[
+        '冬天还债，讨伐雪精灵却引来冬将军，和真被一剑砍死。',
+        '死后见到厄里斯；之后认识维兹，接下别墅除灵，终于搬出马厩。'
+      ],
+      note:'死亡不是高潮，是流程。搬家比任何一场战斗都更像进步。'
+    },
+    {
+      range:'第 9–10 话', tag:'日常 / 要塞', title:'给蛮横的要塞燃起终焰',
+      lines:[
+        '魅魔小店、浴室撞见达克妮丝，队伍关系又微妙了一点。',
+        '机动要塞来袭：阿库娅破结界，惠惠与维兹双爆裂；日冕石被随机传送炸了大统领家，和真成了通缉犯。'
+      ],
+      note:'救了小镇，没拿到赏金。第二天他们还是去公会接委托。'
+    }
+  ];
+
+  /* ---------- 台词 ---------- */
+  var QUOTES = [
+    {who:'惠惠', av:'megumin', fig:'megumin', color:'var(--crimson)', text:'Explosion！', ctx:'一天只能放一次的魔法，所以每次都要喊得很大声。喊完就会倒下，然后等人来背。'},
+    {who:'阿库娅', av:'aqua', fig:'aqua', color:'var(--aqua)', text:'我可是女神哦！', ctx:'这句话出现的频率，和她闯祸的频率基本一致。而且通常出现在她刚闯完祸之后。'},
+    {who:'达克妮丝', av:'dakunes', fig:'darkness', color:'var(--violet)', text:'请、请再多打我几下！', ctx:'骑士的忠诚与个人的癖好，在她身上达成了奇妙的和解。队友已经学会面不改色地无视。'},
+    {who:'佐藤和真', av:'kazuma', fig:'kazuma', color:'var(--green)', text:'为什么我非得和这群家伙一起冒险啊。', ctx:'全季反复出现的内心独白。说完这句，他还是会去接下一个委托——这大概就是队友的意思。'},
+    {who:'维兹', av:'wiz', fig:'wiz', color:'var(--gold)', text:'店里的东西……可以便宜一点卖给你。', ctx:'魔王军前干部的退休生活：一家永远没有客人的道具店，和一颗过分温柔的心。'}
+  ];
+
+  /* ---------- 测验 ---------- */
+  var QUIZ = [
+    {q:'转生窗口前，女神问你想要带什么走，你会？',
+     a:[['一个能赚钱、关键时刻还能保命的技能','kazuma'],
+        ['先确认一下，这里能不能把宠物一起带走','aqua'],
+        ['最强的攻击魔法。其他都不用','megumin'],
+        ['让我去最危险的地方，这是我的职责','darkness']]},
+    {q:'队友把你的存款全赔光了，你的第一句话是？',
+     a:[['把账单贴在他床头，按日计息','kazuma'],
+        ['我先哭。哭到他反过来安慰我','aqua'],
+        ['「这是命运给我的试炼。」','megumin'],
+        ['「是我的错，请惩罚我。」','darkness']]},
+    {q:'战斗开始的第一秒，你在做什么？',
+     a:[['找掩体，观察弱点，顺便规划撤退路线','kazuma'],
+        ['站到最前面宣布「交给我吧」，然后搞砸','aqua'],
+        ['开始咏唱。不管对面是谁，先来一发','megumin'],
+        ['张开双手，站到敌人正前方','darkness']]},
+    {q:'有人夸你「你好厉害」，你的反应是？',
+     a:[['谦虚两句，心里默默记下这份人情','kazuma'],
+        ['要求再夸一次，最好是当众','aqua'],
+        ['回一句更中二的台词，把场面撑住','megumin'],
+        ['希望对方换一种更严厉的方式「夸」','darkness']]},
+    {q:'你最害怕的事情是？',
+     a:[['白忙一场，还倒贴钱','kazuma'],
+        ['被大家当成笨蛋（虽然已经是了）','aqua'],
+        ['被人说「你的魔法很普通」','megumin'],
+        ['某天醒来，发现队伍已经出发了','darkness']]},
+    {q:'难得的休息日，你会？',
+     a:[['在家躺着，数一数还剩多少钱','kazuma'],
+        ['办一场宴会，成为全场焦点','aqua'],
+        ['找个没人的地方，练必杀技','megumin'],
+        ['一个人训练到动不了为止','darkness']]},
+    {q:'深夜有人敲门求助，你？',
+     a:[['先问一句「有报酬吗」','kazuma'],
+        ['立刻开门，然后被卷进麻烦里','aqua'],
+        ['从窗户跳出去，先给一发再说','megumin'],
+        ['挡在门口说「冲我来」','darkness']]}
+  ];
+
+  var FB = {
+    kazuma:'很和真：先算成本，再谈正义。',
+    aqua:'很阿库娅：先做了再说，出事再哭。',
+    megumin:'很惠惠：不管代价，先来一发。',
+    darkness:'很达克妮丝：先站出去，再想怎么办。'
+  };
+
+  var RESULTS = {
+    kazuma:{color:'var(--green)', title:'队伍里的常识人',
+      desc:'你负责算账、观察、逃跑，以及收拾所有人留下的残局。别人以为你不上进，其实你只是比谁都知道这个世界的成本。你嘴上抱怨，最后还是会去接那个委托。',
+      match:'最佳搭档：达克妮丝（她负责挨，你负责收）'},
+    aqua:{color:'var(--aqua)', title:'队伍里的气氛担当',
+      desc:'你的存在让所有人的血压升高，也让所有人不至于散伙。你闯的祸往往由你自己收拾，而且收拾得还不错——只是没人愿意承认这一点。',
+      match:'最佳搭档：惠惠（她放火，你收场）'},
+    megumin:{color:'var(--crimson)', title:'一天一发的艺术家',
+      desc:'你把所有的才能都压在一个点上，然后为它喊得很大声。这不经济，也不聪明，但你相信一生只要有一件事做到极致就够了。剩下的事，等倒下再说。',
+      match:'最佳搭档：和真（他会背你回家）'},
+    darkness:{color:'var(--violet)', title:'站在最前面的那个人',
+      desc:'你承受的比你能承受的更多——而且你似乎有点享受。别人笑你，但真出事的时候，队伍第一个找的永远是你。你的可靠，藏在最不像样的台词后面。',
+      match:'最佳搭档：阿库娅（她会把你治好的）'}
+  };
+
+  /* ---------- 主题 ---------- */
+  var root = document.documentElement;
+  var themeBtn = $('#themeBtn');
+  try{
+    var saved = localStorage.getItem('konosuba-theme');
+    if(saved === 'night'){ root.setAttribute('data-theme','night'); themeBtn.textContent = '☀'; }
+  }catch(e){}
+  themeBtn.addEventListener('click', function(){
+    var night = root.getAttribute('data-theme') === 'night';
+    root.setAttribute('data-theme', night ? 'day' : 'night');
+    themeBtn.textContent = night ? '☾' : '☀';
+    try{ localStorage.setItem('konosuba-theme', night ? 'day' : 'night'); }catch(e){}
+  });
+
+  /* ---------- 渲染角色 ---------- */
+  var castGrid = $('#castGrid');
+  castGrid.innerHTML = CHARS.map(function(c,i){
+    return '<article class="char reveal" style="--c:'+c.color+';--d:'+(i*90)+'ms" data-id="'+c.id+'" tabindex="0" role="button" aria-label="查看 '+c.name+' 的角色档案">'
+      + '<div class="char-fig"><img src="assets/cast/'+c.id+'.png?v=2" alt="'+c.name+' 官方角色设定图" decoding="async"><span class="char-fallback" aria-hidden="true">'+ICONS[c.id]+'</span></div>'
+      + '<div class="char-head"><span class="char-no">No.'+c.no+'</span><span class="char-cls">'+c.cls+'</span></div>'
+      + '<h3 class="char-name">'+c.name+'<span>'+c.jp+' · '+c.en+'</span></h3>'
+      + '<p class="char-tag">'+c.tag+'</p>'
+      + '<ul class="bars">'+c.stats.map(function(s){
+          return '<li><span>'+s[0]+'</span><i><b style="--v:'+s[1]+'%"></b></i><em>'+s[1]+'</em></li>';
+        }).join('')+'</ul>'
+      + '<div class="char-foot"><span>Profile · 档案</span><span class="arrow">↗</span></div>'
+      + '</article>';
+  }).join('');
+
+  $('#supportGrid').innerHTML = SUPPORT.map(function(s){
+    return '<div class="sup"><img src="assets/av/'+s.img+'.png" alt="'+s.n+'" loading="lazy">'
+      + '<div><b>'+s.n+'</b><span>'+s.r+'</span><p>'+s.d+'</p></div></div>';
+  }).join('');
+
+  $$('.char-fig img').forEach(function(img){
+    img.addEventListener('error', function(){ img.parentElement.classList.add('broken'); });
+  });
+
+  /* ---------- 弹窗 ---------- */
+  var modal = $('#modal'), modalBody = $('#modalBody'), modalX = $('#modalX'), lastFocus = null;
+  function openChar(id){
+    var c = CHARS.filter(function(x){return x.id===id;})[0];
+    if(!c) return;
+    lastFocus = document.activeElement;
+    modalBody.innerHTML =
+      '<div class="m-head" style="--c:'+c.color+'">'
+      + '<span class="m-no">No.'+c.no+'</span>'
+      + '<div><h3>'+c.name+'</h3><p>'+c.jp+' · '+c.en+' · '+c.cls+'</p></div>'
+      + '<div class="m-mark" aria-hidden="true">'+ICONS[c.id]+'</div>'
+      + '</div>'
+      + '<div class="m-quote" style="--c:'+c.color+'">'+c.quote+'</div>'
+      + '<div class="m-grid">'
+      + '<section><h4>档案</h4><p>'+c.bio+'</p></section>'
+      + '<section><h4>第一季</h4><p>'+c.scene+'</p></section>'
+      + '<section class="wide"><h4>我的解读</h4><p>'+c.view+'</p></section>'
+      + '</div>'
+      + '<div class="m-tags">'+c.tags.map(function(t){return '<span>'+t+'</span>';}).join('')+'</div>';
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    modalX.focus();
+  }
+  function closeChar(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  castGrid.addEventListener('click', function(e){
+    var card = e.target.closest('.char');
+    if(card) openChar(card.dataset.id);
+  });
+  castGrid.addEventListener('keydown', function(e){
+    if(e.key!=='Enter' && e.key!==' ') return;
+    var card = e.target.closest('.char');
+    if(card){ e.preventDefault(); openChar(card.dataset.id); }
+  });
+  modalX.addEventListener('click', closeChar);
+  modal.addEventListener('click', function(e){ if(e.target.hasAttribute('data-close')) closeChar(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape' && modal.classList.contains('open')) closeChar();
+  });
+
+  /* ---------- 时间轴 ---------- */
+  $('#arcs').innerHTML = ARCS.map(function(a,i){
+    return '<div class="arc reveal'+(i===0?' open':'')+'" style="--d:'+(i*60)+'ms">'
+      + '<button class="arc-head" type="button" aria-expanded="'+(i===0?'true':'false')+'">'
+      + '<span class="arc-range">'+a.range+'</span>'
+      + '<span class="arc-main"><b>'+a.title+'</b><em>'+a.tag+'</em></span>'
+      + '<span class="arc-icon" aria-hidden="true"></span>'
+      + '</button>'
+      + '<div class="arc-body"><div class="arc-inner"><div class="arc-content">'
+      + '<div class="arc-main">'
+      + '<ul class="arc-list">'+a.lines.map(function(l){return '<li>'+l+'</li>';}).join('')+'</ul>'
+      + '<p class="arc-note"><span>我的理解</span>'+a.note+'</p>'
+      + '</div>'
+      + '<figure class="arc-shot"><img src="assets/ep/'+ARC_IMGS[i]+'.jpg" alt="'+a.title+' 剧照" loading="lazy"><figcaption>'+a.range+' · 原片截图</figcaption></figure>'
+      + '</div></div></div>'
+      + '</div>';
+  }).join('');
+
+  $('#ribbon').innerHTML = Array.apply(null,{length:10}).map(function(_,i){
+    return '<i class="on"></i>';
+  }).join('');
+
+  var epRow = $('#epRow');
+  if(epRow){
+    epRow.innerHTML = Array.apply(null,{length:10}).map(function(_,i){
+      var n = i + 1, no = (n < 10 ? '0' : '') + n;
+      return '<figure class="gal-item" data-cap="EP'+no+' · 第 '+n+' 话 剧照">'
+        + '<img src="assets/ep/ep'+no+'.jpg" alt="第 '+n+' 话 剧照" loading="lazy">'
+        + '<figcaption>EP '+no+'</figcaption></figure>';
+    }).join('');
+  }
+
+  $$('.arc-head').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var arc = btn.parentElement;
+      var open = arc.classList.contains('open');
+      arc.classList.toggle('open', !open);
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
+  });
+
+  /* ---------- 队伍链条 ---------- */
+  var LINKS = [
+    {k:'fire', who:'惠惠', role:'火力 / 结束战斗', color:'var(--crimson)',
+     text:'爆裂魔法是队伍唯一能真正“结束”一场战斗的东西。代价也很明确：一天一次，用完就倒，而且她从来不管队友站在哪。<b>她的存在让队伍有了上限，也让队伍必须围绕她设计战术。</b>'},
+    {k:'tank', who:'达克妮丝', role:'承伤 / 拖住敌人', color:'var(--violet)',
+     text:'她几乎打不中人，但她能让所有敌人只想打她。这不是战术失误，这是战术核心：<b>队伍需要一个人站在前面，把所有的恨意接住。</b>只要她还没倒，惠惠就有时间咏唱。'},
+    {k:'heal', who:'阿库娅', role:'回复 / 破结界', color:'var(--aqua)',
+     text:'净化、复活、解咒。她是最强的后勤，也是最贵的事故源。有她在，<b>“死”从终结变成了流程</b>——可以重来，但要付钱，而且很丢脸。'},
+    {k:'luck', who:'和真', role:'收束 / 结算', color:'var(--green)',
+     text:'他负责观察、偷窃、谈判和逃跑。所有失控的场面，最后都要由他把结局收进一个能过日子的形状。<b>他不是队伍最强的部分，他是让其他部分成立的那颗螺丝。</b>'}
+  ];
+  var chainEl = $('#chain'), panelEl = $('#chainPanel');
+  chainEl.innerHTML = LINKS.map(function(l){
+    return '<button class="link" type="button" data-k="'+l.k+'" style="--lc:'+l.color+'">'
+      + '<em>'+l.role.split(' / ')[0]+'</em><b>'+l.who+'</b><span>'+l.role.split(' / ')[1]+'</span></button>';
+  }).join('');
+  chainEl.addEventListener('click', function(e){
+    var btn = e.target.closest('.link');
+    if(!btn) return;
+    $$('.link').forEach(function(b){ b.classList.toggle('on', b===btn); });
+    var l = LINKS.filter(function(x){return x.k===btn.dataset.k;})[0];
+    panelEl.innerHTML = '<p><b>'+l.who+' · '+l.role+'。</b>'+l.text+'</p>';
+  });
+
+  /* ---------- 台词 ---------- */
+  var qText = $('#qText'), qBy = $('#qBy'), qCtx = $('#qCtx'), qTabs = $('#qTabs'), qFig = $('#qFig');
+  qTabs.innerHTML = QUOTES.map(function(q,i){
+    return '<button class="q-tab" type="button" data-i="'+i+'" style="--tc:'+q.color+'"><img src="assets/av/'+q.av+'.png" alt="">'+q.who+'</button>';
+  }).join('');
+  function setQuote(i, animate){
+    var q = QUOTES[i];
+    var apply = function(){
+      qText.textContent = q.text;
+      qBy.textContent = q.who;
+      qCtx.textContent = q.ctx;
+      qText.classList.remove('swap'); qCtx.classList.remove('swap');
+    };
+    $$('.q-tab').forEach(function(t){ t.classList.toggle('on', +t.dataset.i === i); });
+    if(qFig && q.fig){
+      qFig.classList.add('hide');
+      setTimeout(function(){
+        qFig.src = 'assets/cast/' + q.fig + '.png';
+        qFig.classList.remove('hide');
+      }, 180);
+    }
+    if(animate && !reduced){
+      qText.classList.add('swap'); qCtx.classList.add('swap');
+      setTimeout(apply, 200);
+    } else { apply(); }
+  }
+  qTabs.addEventListener('click', function(e){
+    var t = e.target.closest('.q-tab');
+    if(t) setQuote(+t.dataset.i, true);
+  });
+  setQuote(0, false);
+
+  /* ---------- 测验 ---------- */
+  var quizInner = $('#quizInner'), qTitle = $('#qTitle'), qOpts = $('#qOpts'),
+      qStep = $('#qStep'), qBar = $('#quizBar');
+  var qi = 0, scores = {kazuma:0, aqua:0, megumin:0, darkness:0}, locked = false;
+
+  function renderQ(){
+    locked = false;
+    var q = QUIZ[qi];
+    qStep.textContent = 'Question ' + String(qi+1).padStart(2,'0') + ' / ' + String(QUIZ.length).padStart(2,'0');
+    qBar.style.width = ((qi)/QUIZ.length*100) + '%';
+    qTitle.textContent = q.q;
+    qOpts.innerHTML = q.a.map(function(o,i){
+      return '<button class="q-opt" type="button" data-k="'+o[1]+'"><span class="k">'+String.fromCharCode(65+i)+'</span><span>'+o[0]+'</span></button>';
+    }).join('');
+    qOpts.classList.remove('fade');
+  }
+  qOpts.addEventListener('click', function(e){
+    var btn = e.target.closest('.q-opt');
+    if(!btn || locked) return;
+    locked = true;
+    btn.classList.add('pick');
+    $$('.q-opt', qOpts).forEach(function(b){ if(b!==btn) b.classList.add('fade'); });
+    scores[btn.dataset.k] += 1;
+    var fb = document.createElement('div');
+    fb.className = 'q-fb';
+    fb.innerHTML = '<img src="assets/av/'+btn.dataset.k+'.png" alt=""><span>'+FB[btn.dataset.k]+'</span>';
+    qOpts.appendChild(fb);
+    setTimeout(function(){
+      qi++;
+      if(qi < QUIZ.length){ renderQ(); }
+      else { qBar.style.width = '100%'; showResult(); }
+    }, reduced ? 120 : 950);
+  });
+
+  function showResult(){
+    var best = 'kazuma', max = -1;
+    Object.keys(scores).forEach(function(k){ if(scores[k] > max){ max = scores[k]; best = k; } });
+    var c = CHARS.filter(function(x){return x.id===best;})[0];
+    var r = RESULTS[best];
+    var order = ['kazuma','aqua','megumin','darkness'];
+    var total = QUIZ.length;
+    var scoreHTML = order.map(function(k){
+      var ch = CHARS.filter(function(x){return x.id===k;})[0];
+      var pct = Math.round(scores[k] / total * 100);
+      return '<li class="'+(k===best?'on':'')+'" style="--sc:'+ch.color+'">'
+        + '<span>'+ch.name+'</span><i><b data-w="'+pct+'"></b></i><em>'+pct+'%</em></li>';
+    }).join('');
+
+    quizInner.innerHTML =
+      '<div class="quiz-result on" style="--rc:'+r.color+'">'
+      + '<img class="res-face" src="assets/face/'+best+'.png" alt="'+c.name+'">'
+      + '<p class="res-kicker">Your class is</p>'
+      + '<h3 class="res-name">'+c.name+'</h3>'
+      + '<span class="res-title">'+r.title+'</span>'
+      + '<p class="res-desc">'+r.desc+'</p>'
+      + '<ul class="res-scores">'+scoreHTML+'</ul>'
+      + '<p class="res-match">'+r.match+'</p>'
+      + '<div class="res-actions">'
+      + '<button class="btn btn-solid" type="button" id="againBtn">再测一次</button>'
+      + '<button class="btn btn-line" type="button" id="copyBtn">复制结果</button>'
+      + '</div></div>';
+
+    $$('.res-scores b').forEach(function(b){ b.style.background = 'var(--sc)'; });
+    requestAnimationFrame(function(){
+      $$('.res-scores b').forEach(function(b){ b.style.width = b.dataset.w + '%'; });
+    });
+
+    $('#againBtn').addEventListener('click', function(){
+      qi = 0;
+      scores = {kazuma:0, aqua:0, megumin:0, darkness:0};
+      quizInner.innerHTML =
+        '<div class="quiz-bar"><i id="quizBar"></i></div>'
+        + '<div class="q-meta"><span id="qStep">Question 01 / 07</span><span>KonoSuba Party Test</span></div>'
+        + '<h3 class="q-title" id="qTitle"></h3>'
+        + '<div class="q-opts" id="qOpts"></div>';
+      qBar = $('#quizBar'); qStep = $('#qStep'); qTitle = $('#qTitle'); qOpts = $('#qOpts');
+      renderQ();
+    });
+
+    $('#copyBtn').addEventListener('click', function(){
+      var btn = this;
+      var txt = '我在《为美好的世界献上祝福！》第一季的队伍里是：' + c.name + ' · ' + r.title
+        + '（' + order.map(function(k){
+            var nm = CHARS.filter(function(x){return x.id===k;})[0].name;
+            return nm + ' ' + Math.round(scores[k]/total*100) + '%';
+          }).join(' / ') + '）';
+      var done = function(){
+        btn.textContent = '已复制';
+        setTimeout(function(){ btn.textContent = '复制结果'; }, 1600);
+      };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(done, function(){ fallback(); });
+      } else { fallback(); }
+      function fallback(){
+        var ta = document.createElement('textarea');
+        ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); done(); }catch(e){}
+        document.body.removeChild(ta);
+      }
+    });
+  }
+
+  renderQ();
+
+  /* ---------- 滚动显现 ---------- */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  $$('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* ---------- 导航 ---------- */
+  var nav = $('#nav'), navLinks = $$('#navLinks a'), burger = $('#burger'), mobileMenu = $('#mobileMenu'), chibiTop = $('#chibiTop');
+  var progressBar = $('.progress i');
+  function onScroll(){
+    var y = window.scrollY || window.pageYOffset;
+    nav.classList.toggle('scrolled', y > 40);
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (h > 0 ? Math.min(1, y/h)*100 : 0) + '%';
+    if(chibiTop) chibiTop.classList.toggle('on', y > 700);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  if(chibiTop){
+    chibiTop.addEventListener('click', function(){
+      window.scrollTo({ top:0, behavior: reduced ? 'auto' : 'smooth' });
+    });
+  }
+
+  burger.addEventListener('click', function(){
+    var on = mobileMenu.classList.toggle('on');
+    burger.classList.toggle('on', on);
+    burger.setAttribute('aria-expanded', on ? 'true' : 'false');
+  });
+  mobileMenu.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){
+      mobileMenu.classList.remove('on'); burger.classList.remove('on');
+      burger.setAttribute('aria-expanded','false');
+    }
+  });
+
+  var sections = ['prologue','world','cast','season','read','gallery','quotes','quiz'].map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        navLinks.forEach(function(a){
+          a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id);
+        });
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px', threshold:0});
+  sections.forEach(function(s){ spy.observe(s); });
+
+  /* ---------- 粒子 ---------- */
+  (function(){
+    var cv = $('#particles');
+    if(!cv || reduced) return;
+    var ctx = cv.getContext('2d'), W=0, H=0, dpr = Math.min(window.devicePixelRatio||1, 2), parts=[], raf=null, visible=true;
+
+    function size(){
+      var r = cv.getBoundingClientRect();
+      W = r.width; H = r.height;
+      cv.width = W*dpr; cv.height = H*dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    function make(){
+      var n = Math.max(22, Math.min(58, Math.round(W/26)));
+      parts = [];
+      for(var i=0;i<n;i++){
+        parts.push({
+          x: Math.random()*W, y: Math.random()*H,
+          r: Math.random()*1.9 + .5,
+          vy: -(Math.random()*.24 + .06),
+          vx: (Math.random()-.5)*.16,
+          a: Math.random()*.5 + .12,
+          ph: Math.random()*Math.PI*2,
+          c: Math.random() > .45 ? '43,150,168' : '176,129,44'
+        });
+      }
+    }
+    function tick(){
+      if(!visible){ raf = null; return; }
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<parts.length;i++){
+        var p = parts[i];
+        p.ph += .008;
+        p.x += p.vx + Math.sin(p.ph)*.22;
+        p.y += p.vy;
+        if(p.y < -12){ p.y = H + 10; p.x = Math.random()*W; }
+        if(p.x < -12) p.x = W + 10;
+        if(p.x > W + 12) p.x = -10;
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba('+p.c+','+p.a+')';
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fill();
+      }
+      raf = requestAnimationFrame(tick);
+    }
+    size(); make();
+    if(!reduced) raf = requestAnimationFrame(tick);
+    window.addEventListener('resize', function(){ size(); make(); }, {passive:true});
+    document.addEventListener('visibilitychange', function(){
+      if(document.hidden){ if(raf){ cancelAnimationFrame(raf); raf=null; } }
+      else if(!raf && visible){ raf = requestAnimationFrame(tick); }
+    });
+    var hio = new IntersectionObserver(function(en){
+      visible = en[0].isIntersecting;
+      if(visible && !raf){ raf = requestAnimationFrame(tick); }
+      if(!visible && raf){ cancelAnimationFrame(raf); raf=null; }
+    }, {threshold:0});
+    hio.observe(cv);
+  })();
+
+  /* ---------- 图片兜底加载（仅关键小图） ---------- */
+  (function(){
+    var sel = '.char-fig img, .read-fig img, .sec-sticker, .foot-cast img, .q-fig img, .m-mark img';
+    function force(){
+      $$(sel).forEach(function(img){
+        if(img.complete && img.naturalWidth > 0) return;
+        img.loading = 'eager';
+        var src = img.getAttribute('src');
+        if(src){ img.removeAttribute('src'); img.setAttribute('src', src); }
+      });
+    }
+    window.addEventListener('load', function(){ setTimeout(force, 400); });
+    window.addEventListener('pageshow', function(e){ if(e.persisted) force(); });
+  })();
+
+  /* ---------- 画集灯箱 ---------- */
+  (function(){
+    var lb = $('#lightbox'), lbImg = $('#lbImg'), lbCap = $('#lbCap');
+    if(!lb) return;
+    function close(){
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+      lbImg.removeAttribute('src');
+    }
+    $$('.gal-item').forEach(function(fig){
+      fig.setAttribute('tabindex','0');
+      fig.setAttribute('role','button');
+      fig.addEventListener('click', function(){
+        var img = fig.querySelector('img');
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lbCap.textContent = fig.dataset.cap || '';
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+      fig.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); fig.click(); }
+      });
+    });
+    lb.addEventListener('click', function(e){ if(e.target === lb || e.target.id === 'lbClose') close(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+  })();
+
+  /* ---------- 爆裂 ---------- */
+  var boomEl = $('#boom'), boomBtn = $('#boomBtn'), booming = false;
+  boomBtn.addEventListener('click', function(){
+    if(booming) return;
+    booming = true;
+    var old = boomBtn.textContent;
+    boomBtn.textContent = '詠唱中……';
+    boomBtn.disabled = true;
+    setTimeout(function(){
+      boomEl.classList.remove('on');
+      void boomEl.offsetWidth;
+      boomEl.classList.add('on');
+      boomBtn.textContent = old;
+      boomBtn.disabled = false;
+      booming = false;
+      setTimeout(function(){ boomEl.classList.remove('on'); }, 2100);
+    }, reduced ? 80 : 900);
+  });
+})();
+</script>
+</body>
+</html>
